@@ -1,0 +1,82 @@
+#main_wrapper {
+	display : flex;
+	flex-direction: column;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+header {
+	display: flex;
+	justify-content: space-between;
+	width: 50%;
+}
+
+#application {
+	display : flex;
+	flex-direction: column;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .080) inset;
+	margin-bottom : 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 700px;
+}
+
+.indentation {
+	margin-left: : 14px;
+	padding-left: 14px;
+}
+h2 {
+	font-size: 125%;
+	padding-top: 5px;
+	margin-top: 5px;
+}
+
+.mise_en_page_titre {
+	display: flex;
+	flex-direction: column;
+}
+
+.affichage_horizontal {
+	display: flex;
+}
+
+.affichage_horizontal_espace_entre {
+	display: flex;
+	justify-content: space-between;
+}
+
+#carte_emprise {
+	 height: 350px;
+	 border: 1px solid #aaa; 
+}
+
+#champs_partage {
+	justify-content: space-between;
+}
+
+.espace_gauche {
+	padding-left: 10px;
+}
+
+.espace_droite {
+	padding-right: 10px;
+}
+
+.espace_haut {
+	padding-top: 5px;
+}
+
+.couches_donnees {
+	width: 100%;
+}
+
+footer {
+	border-style: none;
+	background-color: #e7e7e7;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	color: #777;
+	height: 30px;
+}

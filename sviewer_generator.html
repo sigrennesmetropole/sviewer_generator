@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>sviewer generator</title>
+		<script src="assets/js/jquery-3.3.1.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/select2.min.js"></script>
+		<script src="assets/js/leaflet.js"></script>
+		<link rel="stylesheet" href="assets/css/bootstrap_4-3-1.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/sviewer_generator.min.css">
+	</head>
+	<body>
+		<div id="main_wrapper">
+			<header>
+				<p><img src="assets/images/logo-rm-petit-petit.jpg" /></p>
+				<h1> Sviewer generator</h1>
+			</header>
+			
+			<div id="application" class="container-fluid">
+				<form>
+					<div id="emprise" class="affichage_horizontal_espace_entre mise_en_page_titre">
+						<h2>Cadrage carte</h2>
+						<div class="affichage_horizontal col-md-6">
+							<div id="conteneur_liste_communes" class="col-md-6">
+								<select id="liste_communes" class="form-control"></select>
+							</div>
+
+							<div id="conteneur_map" class="col-md-8">
+								<div id="carte_emprise">
+									 
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="affichage_horizontal">
+						<div class="espace_droite">
+							<div>
+								<div class="mise_en_page_titre">
+									<h2>Choix donnees</h2>
+									<div id="informations_carte" class="affichage_horizontal_espace_entre">
+										<div id="conteneur_liste_fonds_plans" class="col-md-2">
+											<select id="liste_fonds_plans" class="form-control"></select>
+										</div>
+
+										<div id="conteneur_liste_site_org" class="col-md-5">
+											<select id="liste_site_org" multiple="multiple" class="form-control"></select>
+										</div>
+
+										<div id="conteneur_liste_equipements_techniques" class="col-md-4">
+											<select id="liste_equipements_techniques" multiple="multiple" class="form-control"></select>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div id="parametre_application">
+								<h2>Configuration interface</h2>
+								<div class="indentation">
+									<span>interface sviewer</span>
+									<div class="form-check form-check-inline espace_gauche">
+										<label class="form-check-label" for="conf_complete">
+									    	<input type="radio" name="configuration_sviewer" class="form-check-input" id="conf_complete" 
+									    	value="complete" checked> complète
+										</label>
+									</div>
+									<div class="form-check form-check-inline">
+								  		<label class="form-check-label" for="conf_allege">
+								    		<input type="radio" class="form-check-input" name="configuration_sviewer" id="conf_allege" 
+								    		value="allegee">allégée
+								  		</label>
+								  	</div>
+							  	</div>
+							</div>
+
+							<div id="partage">
+								<h2>Partage <i class="fa fa-share-alt"></i></h2>
+								<div id="champs_partage" class="indentation">
+									<div class="affichage_horizontal">
+										<div class="affichage_horizontal">
+											<label class="form-check-label espace_droite" for="conf_complete"> titre </label>
+											<input type="text" id="titre_sviewer" class="form-control espace_gauche" placeholder="titre carte" /> 
+										</div>
+										<div class="affichage_horizontal">
+											<label class="form-check-label espace_gauche espace_droite" for="conf_complete"> largeur </label>
+											<input type="number" id="largeur_iframe" class="form-control" value="500" />
+											
+											<label class="form-check-label espace_gauche espace_droite" for="conf_complete"> hauteur </label>
+											<input type="number" id="hauteur_iframe" class="form-control" value="400" />	
+										</div>
+									</div>
+
+									<div id="affichage_code" class="espace_haut"></div>
+									<div id="affichage_url_sviewer" class="espace_haut"> </div>
+								</div>
+							</div>
+						</div>
+						<div id="visualisation_resultat"> </div>
+					</div>
+
+				</form>	
+			</div>
+			<!--<footer> 
+				<div id="version"></div> 
+			</footer>-->
+		</div>
+		<script src="assets/js/sviewer_generator.min.js"></script>
+	</body>
+</html>
+
+

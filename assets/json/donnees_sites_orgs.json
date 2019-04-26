@@ -1,0 +1,76 @@
+ {
+ 	"sites_organismes" : [
+		{
+			"id": 1,
+			"nom": "Administration/Démarches",
+		  	"text": "Administration / Démarches",
+		  	"couche": "app:sv_sitorg_administration"
+		},
+		{
+			"id" : 10,
+		  	"nom": "Culte",
+		  	"text": "Culte",
+		  	"couche": "non_defini"
+		},
+		{
+			"id" : 7,
+			"nom": "Culture/Socioculturel",
+			"text": "Culture / Socioculturel",
+			"couche": "app:sv_sitorg_culture"
+		},	
+		{
+			"id" : 11,
+			"nom": "Déplacement/mobilité",
+			"text": "Déplacement / mobilité",
+			"couche": "app:sv_sitorg_deplacement"
+		},	
+		{
+			"id" : 3,
+		  	"nom": "Economie/Emploi",
+		 	"text": "Economie / Emploi",
+		  	"couche": "app:sv_sitorg_economie"
+		},	
+		{
+			"id" : 2,
+		  	"nom": "Education/Enseignement/Recherche",
+		  	"text": "Education / Enseignement / Recherche",
+		  	"couche": "app:sv_sitorg_education"
+		},	
+		{
+			"id" : 4,
+			"nom": "Environnement/Cadre de vie",
+			"text": "Environnement / Cadre de vie",
+			"couche": "app:sv_sitorg_environnement"
+		},	
+		{
+			"id" :  12,
+			"nom": "Logement/Urbanisme",
+			"text": "Logement / Urbanisme",
+			"couche": "app:sv_sitorg_logement"
+		},	
+		{
+			"id" : 8,
+			"nom": "Santé/Action sociale",
+			"text": "Santé / Action sociale",
+			"couche": "app:sv_sitorg_sante"
+		},	
+		{
+			"id" : 5,
+			"nom": "Sécurité/Justice",
+			"text": "Sécurité / Justice",
+			"couche": "app:sv_sitorg_securite"
+		},		
+		{
+			"id": 9,
+			"nom": "Sport",
+			"text": "Sport",
+			"couche": "app:sv_sitorg_sport"
+		},	
+		{
+			"id" : 6,
+			 "nom": "Tourisme",
+			 "text": "Tourisme",
+			 "couche": "non_defini"
+		}
+	]
+}

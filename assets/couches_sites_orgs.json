@@ -1,0 +1,60 @@
+{
+	{
+	  "id": "Administration/Démarches",
+	  "text": "Administration / Démarches",
+	  "couche": "app:sv_sitorg_administration"
+	},
+	{
+	  "id": "Culte",
+	  "text": "Culte"
+	},
+	{
+	  "id": "Culture/Socioculturel",
+	  "text": "Culture / Socioculturel",
+	  "couche": "app:sv_sitorg_culture"
+	},	
+	{
+	  "id": "Déplacement / mobilité",
+	  "text": "Déplacement / mobilité",
+	  "couche": "app:sv_sitorg_deplacement"
+	},	
+	{
+	  "id": "Economie / Emploi",
+	  "text": "Economie / Emploi",
+	  "couche": "app:sv_sitorg_economie"
+	},	
+	{
+	  "id": "Education/Enseignement/Recherche",
+	  "text": "Education / Enseignement/Recherche",
+	  "couche": "app:sv_sitorg_education"
+	},	
+	{
+	  "id": "Environnement/Cadre de vie",
+	  "text": "Environnement / Cadre de vie",
+	  "couche": "app:sv_sitorg_environnement"
+	},	
+	{
+	  "id": "Logement/Urbanisme",
+	  "text": "Logement/Urbanisme",
+	  "couche": "app:sv_sitorg_logement"
+	},	
+	{
+	  "id": "Santé/Action sociale",
+	  "text": "Santé / Action sociale",
+	  "couche": "app:sv_sitorg_sante"
+	},	
+	{
+	  "id": "Sécurité/Justice",
+	  "text": "Sécurité / Justice",
+	  "couche": "app:sv_sitorg_securite"
+	},		
+	{
+	  "id": "Sport",
+	  "text": "Sport",
+	  "couche": "app:sv_sitorg_sport"
+	},	
+	{
+	  "id": "Tourisme",
+	  "text": "Tourisme"
+	}
+}

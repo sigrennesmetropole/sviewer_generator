@@ -1,0 +1,14 @@
+{
+ 	"donnees_metiers" : [
+		{
+		  "id": "Point d'apport volontaire",
+		  "nom": "Point d'apport volontaire",
+		  "couche": "app:sv_metier_v_gesbac_pav"
+		},
+		{
+		  "id": "Déchets - service RM",
+		  "nom": "Déchets - service RM",
+		  "couche": "app:sv_metier_dechets"
+		}
+	]
+}

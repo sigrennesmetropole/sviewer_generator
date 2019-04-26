@@ -1,0 +1,19 @@
+{
+	"fonds_plans" : [
+		{
+			"id": 0,
+			"nom" : "pvci",
+			"text" : "pvci"
+		},
+		{
+			"id": 1,
+			"nom": "ortho2014",
+			"text" : "ortho 2014"
+		},
+		{
+			"id": 2,
+			"nom" : "cadastre",
+			"text" : "cadastre"
+		}
+	]
+}

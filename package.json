@@ -1,0 +1,21 @@
+{
+  "name": "formulaire-sviewer",
+  "version": "0.0.1",
+  "description": "Generateur de sviewer",
+  "main": "formulaire.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cyril Thomas",
+  "license": "",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-minify": "^3.1.0",
+    "jshint": "^2.9.5"
+  }
+}
