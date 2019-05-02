@@ -17,6 +17,7 @@
 			<header>
 				<p><img src="assets/images/logo.png" /></p>
 				<p class="text_explicatif">Générateur de visualiseur de cartes sur Rennes Métropole</p>
+				<p class="detail_text">TODO (CM) texte expliquant l'usage de cette applicationh</p>
 			</header>
 			
 			<div id="application" class="h-100">
@@ -25,7 +26,7 @@
 						<h2 class="titre">Votre carte <i class="fas fa-map-marked-alt"></i></h2>
 						<div id="champs_carte">
 							<div id="cadrage">
-								<h3 class="col-md-8">cadrage</h3>
+								<h3 class="col-md-8">Choisissez votre cadrage</h3>
 								<div>
 									<div id="conteneur_liste_communes" class="col-md-10">
 										<select id="liste_communes" class="form-control"></select>
@@ -37,12 +38,13 @@
 							</div>
 
 							<div id="choix_donnees">
-								<h3 class="col-md-7">Choix donnees</h3>
+								<h3 class="col-md-7">Choisissez vos données</h3>
 								<div id="informations_carte">
 									<div id="conteneur_liste_fonds_plans" class="col-md-4">
-										<label ></label>
+										<label >Fond de plan par défaut</label>
 										<select id="liste_fonds_plans" class="form-control"></select>
 									</div>
+									<label>Données organismes de Rennes Métropole</label>
 									<div id="conteneur_liste_site_org" class="col-md-12">
 										<select id="liste_site_org" multiple="multiple" class="form-control"></select>
 										<div class="col-md-4">
@@ -50,6 +52,7 @@
 										  <label for="liste_site_org_cb">Tout sélectionner</label>
 										</div>
 									</div>
+									 <label>Données métiers</label>
 									<div id="conteneur_liste_equipements_techniques" class="col-md-12">
 										<select id="liste_equipements_techniques" multiple="multiple" class="form-control"></select>
 										<div class="col-md-4">
@@ -61,7 +64,7 @@
 							</div>
 
 							<div id="interface" class="col-md-2">
-								<h3>interface</h3>
+								<h3>Choisissez votre interface</h3>
 								<div class="indentation">
 									<div class="form-check form-check-inline">
 										<label class="form-check-label" for="conf_complete">
@@ -79,7 +82,7 @@
 							</div>
 
 							<div id="titre" class="col-md-3">
-								<h3>titre</h3>
+								<h3>Donnez un titre à votre carte</h3>
 								<input type="text" id="titre_sviewer" class="form-control" placeholder="titre carte" /> 
 							</div>
 						</div>
