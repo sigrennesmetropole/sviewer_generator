@@ -7,11 +7,16 @@
 		},
 		{
 			"id": 1,
+			"nom" : "pvci_light",
+			"text" : "pvci light"
+		},
+		{
+			"id": 2,
 			"nom": "ortho2014",
 			"text" : "ortho 2014"
 		},
 		{
-			"id": 2,
+			"id": 3,
 			"nom" : "cadastre",
 			"text" : "cadastre"
 		}
