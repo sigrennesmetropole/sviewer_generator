@@ -2,7 +2,7 @@
  	"nom_application" : "sviewer generator",
  	"numero_version" : "1.2",
  	"titre_application" : "Générateur de visualiseur de données géographiques",
- 	"detail_text" : "Le générateur de visualiseurs vous permet de réaliser des cartes simples dynamiques, à partir des données diffusées sur la plateforme publique de Rennes Métropole. Ces cartes peuvent être partagées à traver sune URL ou une balise iframe à intégrer dans votre site internet. ",
+ 	"detail_text" : "Le générateur de visualiseurs vous permet de réaliser des cartes simples dynamiques, à partir des données diffusées sur la plateforme publique de Rennes Métropole.\nCes cartes peuvent être partagées à travers une URL ou une balise iframe à intégrer dans votre site internet. ",
  	"partie_configuration_carte" : [
  		{
  			"nom_partie_configuration_carte" : "Votre carte",
