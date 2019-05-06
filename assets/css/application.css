@@ -9,7 +9,7 @@
 	margin-right: 10px;
 }
 
-.text_explicatif {
+.titre_app {
 	color: #fff;
 	background-color: #5185E0;
 	padding-top: 15px;
@@ -40,7 +40,7 @@
     border-color: #1d1d1b;
 }
 
-#votre_carte, #choix_donnees {
+#votre_carte, #choix_donnees, #titre {
 	margin-bottom: 5px;
 	padding-bottom: 5px;
 }
@@ -118,7 +118,6 @@ footer {
 .conteneur_footer {
 	display: flex;
 	justify-content: space-between;
-	width: 50%;
 }
 
 .conteneur_footer a {

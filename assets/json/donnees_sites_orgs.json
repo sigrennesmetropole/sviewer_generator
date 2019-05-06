@@ -7,12 +7,6 @@
 		  	"couche": "app:sv_sitorg_administration"
 		},
 		{
-			"id" : 10,
-		  	"nom": "Culte",
-		  	"text": "Culte",
-		  	"couche": "non_defini"
-		},
-		{
 			"id" : 7,
 			"nom": "Culture/Socioculturel",
 			"text": "Culture / Socioculturel",
@@ -65,12 +59,6 @@
 			"nom": "Sport",
 			"text": "Sport",
 			"couche": "app:sv_sitorg_sport"
-		},	
-		{
-			"id" : 6,
-			 "nom": "Tourisme",
-			 "text": "Tourisme",
-			 "couche": "non_defini"
 		}
 	]
 }
