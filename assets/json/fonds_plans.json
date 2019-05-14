@@ -3,22 +3,22 @@
 		{
 			"id": 0,
 			"nom" : "pvci",
-			"text" : "pvci"
+			"text" : "Plan de ville"
 		},
 		{
 			"id": 1,
-			"nom" : "pvci_light",
-			"text" : "pvci light"
+			"nom" : "pvci_simple_gris",
+			"text" : "Plan de ville simple gris"
 		},
 		{
 			"id": 2,
 			"nom": "ortho2014",
-			"text" : "ortho 2014"
+			"text" : "Vue aérienne 2014"
 		},
 		{
 			"id": 3,
 			"nom" : "cadastre",
-			"text" : "cadastre"
+			"text" : "Cadastre de Rennes Métropole"
 		}
 	]
 }
