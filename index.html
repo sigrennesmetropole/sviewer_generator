@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>sviewer generator</title>
-		<script src="assets/js/jquery-3.3.1.min.js"></script>
+		<script src="assets/js/jquery-3.4.1.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/js/select2.min.js"></script>
 		<script src="assets/js/leaflet.js"></script>
@@ -15,36 +15,88 @@
 	<body>
 		<div id="conteneur_principal">
 			<header>
-				<p><img src="assets/images/logo.png" /></p>
-				<p class="text_explicatif">Générateur de visualiseur de cartes sur Rennes Métropole</p>
-				<p class="detail_text">TODO (CM) texte expliquant l'usage de cette applicationh</p>
+			<p><img src="assets/images/logo.png" /></p>
+				<p id="titre_page" class="text_explicatif"></p>
 			</header>
 			
 			<div id="application" class="h-100">
+				<p id="detail_text" class="detail_text"></p>
+				<p id="explication_point_interrogation"><i class="fas fa-question-circle"></i></p>
 				<form>
+				
 					<div id="votre_carte" class="panel">
-						<h2 class="titre">Votre carte <i class="fas fa-map-marked-alt"></i></h2>
+						<h2 id="partie_configuration_carte" class="titre">
+							<i class="fas fa-map-marked-alt"></i>
+							<span class="interrogation">
+								<i class="fas fa-question-circle img-titre"></i>
+								<span id="infobulle_configuration_carte" class="infobulle_up"></span>
+							</span>
+						</h2>
 						<div id="champs_carte">
-							<div id="cadrage">
-								<h3 class="col-md-8">Choisissez votre cadrage</h3>
-								<div>
-									<div id="conteneur_liste_communes" class="col-md-10">
-										<select id="liste_communes" class="form-control"></select>
+							<div id="champs_non_donnees">
+								<div id="titre" class="col-md-10 padding_bottom">
+									<h3 id="titre_titre_carte">
+										<span class="interrogation">
+											<i class="fas fa-question-circle"></i>
+											<span id="infobulle_titre_carte" class="infobulle"></span>
+										</span>
+									</h3>
+									<input type="text" id="titre_sviewer" class="form-control" placeholder="titre carte" /> 
+								</div>
+								<div id="cadrage" class="padding_bottom">
+									<h3 id="titre_partie_cadrage" class="col-md-9">
+										<span class="interrogation">
+											<i class="fas fa-question-circle"></i>
+											<span id="infobulle_choix_cadrage" class="infobulle_up"></span>
+										</span>
+									</h3>
+									<div>
+										<div id="conteneur_liste_communes" class="col-md-10">
+											<select id="liste_communes" class="form-control">
+												<option></option>
+											</select>
+										</div>
+										<div id="conteneur_map" class="col-md-8">
+											<div id="carte_emprise"></div>
+										</div>
 									</div>
-									<div id="conteneur_map" class="col-md-8">
-										<div id="carte_emprise"></div>
+								</div>
+								<div id="interface" class="col-md-9">
+									<h3 id="titre_choix_interface">
+										<span class="interrogation">
+											<i class="fas fa-question-circle"></i>
+											<span id="infobulle_choix_interface" class="infobulle_down"></span>
+										</span>
+									</h3>
+									<div class="indentation">
+										<div class="form-check form-check-inline">
+											<label id="label_configuration_complete" class="form-check-label" for="conf_complete">
+											    <input type="radio" name="configuration_sviewer" class="form-check-input" id="conf_complete" 
+											    	value="complete" checked>
+											</label>
+										</div>
+										<div class="form-check form-check-inline">
+										  	<label id="label_configuration_allegee" class="form-check-label" for="conf_allege">
+										    	<input type="radio" class="form-check-input" name="configuration_sviewer" id="conf_allege" 
+										    		value="allegee">
+										  	</label>
+										</div>
 									</div>
 								</div>
 							</div>
-
-							<div id="choix_donnees">
-								<h3 class="col-md-7">Choisissez vos données</h3>
+							<div id="choix_donnees" class="padding_bottom">
+								<h3 id="titre_choix_donnees" class="col-md-7">
+									<span class="interrogation">
+										<i class="fas fa-question-circle"></i>
+										<span id="infobulle_choix_donnees" class="infobulle"></span>
+									</span>
+								</h3>
 								<div id="informations_carte">
 									<div id="conteneur_liste_fonds_plans" class="col-md-4">
-										<label >Fond de plan par défaut</label>
+										<label id="label_fond_plan"></label>
 										<select id="liste_fonds_plans" class="form-control"></select>
 									</div>
-									<label>Données organismes de Rennes Métropole</label>
+									<label id="label_sites_orgs" class="col-md-12"></label>
 									<div id="conteneur_liste_site_org" class="col-md-12">
 										<select id="liste_site_org" multiple="multiple" class="form-control"></select>
 										<div class="col-md-4">
@@ -52,7 +104,7 @@
 										  <label for="liste_site_org_cb">Tout sélectionner</label>
 										</div>
 									</div>
-									 <label>Données métiers</label>
+									 <label id="label_donnees_metiers" class="col-md-12"></label>
 									<div id="conteneur_liste_equipements_techniques" class="col-md-12">
 										<select id="liste_equipements_techniques" multiple="multiple" class="form-control"></select>
 										<div class="col-md-4">
@@ -62,65 +114,114 @@
 									</div>
 								</div>
 							</div>
+						</div>
+					</div>
 
-							<div id="interface" class="col-md-2">
-								<h3>Choisissez votre interface</h3>
-								<div class="indentation">
-									<div class="form-check form-check-inline">
-										<label class="form-check-label" for="conf_complete">
-										    <input type="radio" name="configuration_sviewer" class="form-check-input" id="conf_complete" 
-										    	value="complete" checked> complète
-										</label>
+					<div id="conteneur_apercu_partage" class="alignement_horizontal_espacement_entre">
+						<div id="visualisation_carte" class="panel">
+							<h2 id="titre_apercu_carte" class="titre">
+								<i class="fas fa-eye"></i>
+								<span class="interrogation">
+									<i class="fas fa-question-circle"></i>
+									<span id="infobulle_apercu_carte" class="infobulle_up"></span>
+								</span>
+							</h2>
+							<div id="visualisation_resultat"> </div>
+						</div>
+						
+						<div id="partage" class="panel">
+							<h2 id="titre_partage" class="titre">
+								<i class="fa fa-share-alt"></i>
+								<span class="interrogation">
+									<i class="fas fa-question-circle"></i>
+									<span id="infobulle_partage" class="infobulle_up"></span>
+								</span>
+							</h2>
+							<div id="champs_partage">
+								<div>
+									<h3 id="titre_envoie_lien" class="col-md-12">
+										<span class="interrogation">
+											<i class="fas fa-question-circle"></i>
+											<span id="infobulle_envoyer_lien" class="infobulle_up"></span>
+										</span>
+									</h3>
+									<div class="alignement_horizontale">
+										<div id="affichage_url_sviewer" class="col-md-10 padding_bottom"></div>
+										<div class="btn-copy h-75" id="copy_url"><i class="fas fa-copy"></i></div>
 									</div>
-									<div class="form-check form-check-inline">
-									  	<label class="form-check-label" for="conf_allege">
-									    	<input type="radio" class="form-check-input" name="configuration_sviewer" id="conf_allege" 
-									    		value="allegee">allégée
-									  	</label>
+									<p class="col-md-12">
+										<a id="lien_reducteur_url" href="https://frama.link/#SoutenirFramasoft"></a>
+									</p>
+								</div>
+								<div>
+									<h3 id="code_html_iframe" class="col-md-12">
+										<span class="interrogation">
+											<i class="fas fa-question-circle"></i>
+											<span id="infobulle_integrer_carte" class="infobulle_up"></span>
+										</span>
+									</h3>
+									<div>
+										<div class="alignement_horizontale col-md-12">
+											<h3 id="titre_taille_iframe"></h3>
+											<div>
+												<div class="form-check alignement_horizontale padding_bottom">
+													<div class="alignement_horizontale">
+														<label id="label_taille_pixel" class="form-check-label col-md-12" for="pixels">
+													    <input type="radio" name="taille_iframe" class="form-check-input" id="pixels" 
+													    	value="pixels" checked>
+														</label>
+													</div>
+													<div class="alignement_horizontale">
+														<label class="form-check-label padding_right" id="label_largeur_pixel" for="largeur_iframe_pixel"></label>
+														<input type="number" id="largeur_iframe_pixel" class="form-control col-md-5" value="500" />
+													</div>
+													<div class="alignement_horizontale">
+														<label class="form-check-label padding_right" id="label_hauteur_pixel" for="hauteur_iframe_pixel"></label>
+														<input type="number" id="hauteur_iframe_pixel" class="form-control col-md-5" value="400" />
+													</div>	
+												</div>
+												<div class="form-check alignement_horizontale padding_bottom">
+													<div class="alignement_horizontale">
+														<label id="label_taille_pourcent" class="form-check-label col-md-12" for="pourcentage">
+													    <input type="radio" name="taille_iframe" class="form-check-input" id="pourcentage" 
+													    	value="pourcentage" checked>
+														</label>
+													</div>
+													<div class="alignement_horizontale">
+														<label class="form-check-label padding_right" id="label_largeur_pourcent" for="largeur_iframe_pourcent"></label>
+														<input type="number" id="largeur_iframe_pourcent" class="form-control col-md-5" value="100" /> 
+														<span class="padding_left">%</span>
+													</div>
+													<div class="alignement_horizontale">
+														<label class="form-check-label padding_right" id="label_hauteur_pourcent" for="hauteur_iframe_pourcent"></label>
+														<input type="number" id="hauteur_iframe_pourcent" class="form-control col-md-5" value="100" /> 
+														<span class="padding_left">%</span>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="alignement_horizontale">
+										<div id="affichage_code" class="col-md-10"></div>
+										<div class="btn-copy h-75" id="copy_code"><i class="fas fa-copy"></i></div>
 									</div>
 								</div>
-							</div>
-
-							<div id="titre" class="col-md-3">
-								<h3>Donnez un titre à votre carte</h3>
-								<input type="text" id="titre_sviewer" class="form-control" placeholder="titre carte" /> 
 							</div>
 						</div>
 					</div>
 
-					<div id="visualisation_carte" class="panel">
-						<h2 class="titre">Aperçu de votre carte <i class="fas fa-eye"></i></h2>
-						<div id="visualisation_resultat"> </div>
-					</div>
-
-					<div id="partage" class="panel">
-						<h2 class="titre">Partage <i class="fa fa-share-alt"></i></h2>
-						<div id="champs_partage">
-							<div class="affichage_horizontal">
-								<div  id="taille_iframe" class="col-md-4">
-									<label class="form-check-label" id="label_largeur" for="largeur_iframe"> largeur </label>
-									<input type="number" id="largeur_iframe" class="form-control" value="500" />	
-									<label class="form-check-label" id="label_hauteur" for="hauteur_iframe"> hauteur </label>
-									<input type="number" id="hauteur_iframe" class="form-control" value="400" />	
-								</div>
-							</div>
-							<div id="affichage_code" class="col-md-12"></div>
-							<div id="affichage_url_sviewer" class="col-md-12"> </div>
-						</div>
-					</div>
 				</form>	
 
 			</div>
 
 			<footer> 
-				<div class="conteneur_footer">
+				<div class="conteneur_footer alignement_horizontal_espacement_entre">
 					<div id="version"></div> 
-					<div> <p><a href="aide.html">Aide</a></p> </div>
+					<div> <p><a href="#">Mentions légales</a></p> </div>
+					<div> <p><a href="#">Conditions d'utilisation</a></p> </div>
 				</div>
 			</footer>
 		</div>
 		<script src="assets/js/sviewer_generator.min.js"></script>
 	</body>
 </html>
-
-

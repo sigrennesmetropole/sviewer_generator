@@ -6,8 +6,8 @@ const minify = require('gulp-minify');
 gulp.task('minifier_js', function() {
   gulp.src([
 	'assets/js/configuration.js',
-	'assets/js/model_controleur.js',
-	'assets/js/vue.js',
+	'assets/js/model.js',
+	'assets/js/controler.js',
   ])
     .pipe(minify({
         ext:{
@@ -22,8 +22,8 @@ var concat = require('gulp-concat');
 gulp.task('concat_min_js', function() {
     return gulp.src([
 	  'assets/js/configuration.min.js',
-	  'assets/js/vue.min.js',
-	  'assets/js/model_controleur.min.js',
+	  'assets/js/model.min.js',
+	  'assets/js/controler.min.js',
     ])
     .pipe(plugins.concat('sviewer_generator.min.js'))
     .pipe(gulp.dest('assets/js'));

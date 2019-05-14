@@ -1,0 +1,58 @@
+ {
+ 	"nom_application" : "sviewer generator",
+ 	"numero_version" : "1.2",
+ 	"titre_application" : "Générateur de cartes dynamiques simples",
+ 	"detail_text" : "Le générateur de visualiseurs vous permet de réaliser des cartes simples dynamiques, à partir des données diffusées sur la plateforme publique de Rennes Métropole.\nCes cartes peuvent être partagées à travers une URL ou une balise iframe à intégrer dans votre site internet.",
+ 	"explication_point_interrogation": "Cliquez sur le bouton pour avoir plus de renseignements",
+ 	"partie_configuration_carte" : [
+ 		{
+ 			"nom_partie_configuration_carte" : "Votre carte",
+ 			"infobulle_configuration_carte": "Cette partie permetde créer votre carte",
+ 			"nom_choix_cadrage" : "Choisissez votre cadrage",
+ 			"infobulle_choix_cadrage": "sélection de la commune",
+ 			"nom_choix_donnees" : "Choisissez vos données",
+ 			"infobulle_choix_donnees": "choix données",
+ 			"nom_label_fond_plan" : "Fond de plan par défaut",
+ 			"nom_label_sites_orgs" : "Données organismes de Rennes Métropole",
+ 			"nom_label_donnees_metires" : "Données métiers",
+ 			"nom_choix_interface" : "Choisissez votre interface",
+ 			"infobulle_choix_interface": "choix interface",
+ 			"nom_interface_complete" : "complète",
+ 			"nom_interface_allegee" : "allégée",
+ 			"nom_choix_titre_carte" : "Donnez un titre à votre carte",
+ 			"infobulle_titre_carte": "titre de la carte",
+ 			"titre_carte_par_defaut" : "sviewer de Rennes Métropole",
+ 			"nom_choix_taille_carte" : "Donnez une taille à votre carte",
+ 			"largeur_max_carte" : 800,
+ 			"largeur_carte_par_defaut": 500,
+ 			"hauteur_max_carte" : 800,
+ 			"hauteur_carte_par_defaut" : 400,
+ 			"zoom_carte_par_defaut" : 12
+ 		}
+ 	],
+ 	"partie_apercu_carte" : [
+ 		{
+ 			"nom_partie_apercu_carte" : "Aperçu de votre carte",
+ 			"infobulle_apercu_carte": "aperçu carte"
+ 		}
+ 	],
+ 	"partie_partage" : [
+ 		{
+ 			"nom_partie_partage" : "Partage",
+ 			"infobulle_partage": "partage",
+ 			"nom_champ_code_html" : "intégrer une carte",
+ 			"infobulle_integrer_carte": "intégrer carte",
+ 			"nom_champ_url" : "envoyer un lien",
+ 			"infobulle_envoyer_lien": "envoyer lien",
+ 			"lien_reducteur_url": "https://frama.link/#SoutenirFramasoft",
+ 			"nom_lien_reducteur_url": "réducteur d'URL",
+ 			"nom_titre_taille_iframe": "Taille de l'iframe",
+ 			"nom_label_pixel": "Pixels",
+ 			"nom_label_pourcentage": "%",
+ 			"nom_label_largeur" : "largeur",
+ 			"nom_label_hauteur" : "hauteur"
+ 		}
+ 	],
+ 	"localisation_sviewer" : "https://public.sig.rennesmetropole.fr/sviewer/",
+ 	"url_api_cadastre_Rennes_Metropole" : "https://api-cadastre.sig.rennesmetropole.fr/v1/"
+ }
