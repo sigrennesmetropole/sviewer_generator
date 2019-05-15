@@ -23,10 +23,8 @@
  			"infobulle_titre_carte": "Titre de la carte qui apparait en haut dans le cas d'une configuration complète",
  			"titre_carte_par_defaut" : "sviewer de Rennes Métropole",
  			"nom_choix_taille_carte" : "Donnez une taille à votre carte",
- 			"largeur_max_carte" : 800,
- 			"largeur_carte_par_defaut": 500,
- 			"hauteur_max_carte" : 800,
- 			"hauteur_carte_par_defaut" : 400,
+ 			"largeur_carte_apercu": "100%",
+ 			"hauteur_carte_apercu" : "100%",
  			"zoom_carte_par_defaut" : 12
  		}
  	],

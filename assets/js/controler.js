@@ -241,7 +241,7 @@ function afficher_url_sviewer(url_sviewer) {
 * @Param hauteur_iframe     hauteur du cadre contenant le sviewer
 * @Param url_sviewer   l'url du sviewer à afficher  
 */
-function afficher_code_iframe(largeur_iframe, hauteur_iframe, url_sviewer) {
+function afficher_code_iframe(url_sviewer) {
 	var iframe = '<iframe width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +'"> </iframe>';
 	var contenu_html = '<div class="padding_bottom">'
 						+ '<textarea id="code_iframe" onchange="gerer_changement_url(\'code_iframe\')" class="form-control">' + iframe + ' </textarea> </div>';
@@ -254,7 +254,7 @@ function afficher_code_iframe(largeur_iframe, hauteur_iframe, url_sviewer) {
 * @Param hauteur_iframe     hauteur du cadre contenant le sviewer
 * @Param url_sviewer   l'url du sviewer à afficher 
 */
-function afficher_resultat_iframe(largeur_iframe, hauteur_iframe, url_sviewer) {
+function afficher_resultat_iframe(url_sviewer) {
 	var iframe = '<iframe id="iframe_sviewer" width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +'"> </iframe>';
 	$('#visualisation_resultat').html(iframe);
 }
@@ -268,8 +268,8 @@ function afficher_resultat_iframe(largeur_iframe, hauteur_iframe, url_sviewer) {
 */
 function afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe) {
 	afficher_url_sviewer(url_sviewer);
-    afficher_code_iframe(largeur_iframe, hauteur_iframe, url_sviewer);
-    afficher_resultat_iframe(largeur_iframe, hauteur_iframe, url_sviewer);
+    afficher_code_iframe(url_sviewer);
+    afficher_resultat_iframe(url_sviewer);
 }
 
 var languageFr = {
@@ -421,25 +421,25 @@ map.on('mouseup', function() {
 });
 
 $('#largeur_iframe_pixel').on('input', function() {
-	largeur_iframe = $('#largeur_iframe_pixel').val();
+	//largeur_iframe = $('#largeur_iframe_pixel').val();
  	var url_sviewer = generer_url_sviewer();
 	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
  });
 
 $('#hauteur_iframe_pixel').on('input', function() {
-	hauteur_iframe = $('#hauteur_iframe_pixel').val();
+	//hauteur_iframe = $('#hauteur_iframe_pixel').val();
  	var url_sviewer = generer_url_sviewer();
 	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
  });
 
 $('#largeur_iframe_pourcent').on('input', function() {
-	largeur_iframe = $('#largeur_iframe_pourcent').val() + '%';
+	//largeur_iframe = $('#largeur_iframe_pourcent').val() + '%';
  	var url_sviewer = generer_url_sviewer();
 	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
  });
 
 $('#hauteur_iframe_pourcent').on('input', function() {
-	hauteur_iframe = $('#hauteur_iframe_pourcent').val() + '%';
+	//hauteur_iframe = $('#hauteur_iframe_pourcent').val() + '%';
  	var url_sviewer = generer_url_sviewer();
 	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
  });
@@ -526,16 +526,8 @@ $.when(get_configuration_data()).done(function(configuration) {
     url_api_cadastre = configuration.url_api_cadastre_Rennes_Metropole;
     url_sviewer = configuration.localisation_sviewer;
 
-    $('#largeur_iframe').attr('max', configuration.partie_configuration_carte[0].largeur_max_carte);
-	$('#hauteur_iframe').attr('max', configuration.partie_configuration_carte[0].hauteur_max_carte);
-
-	if ($('input[name=taille_iframe]:checked').val() == 'pixels') {
-		largeur_iframe = $('#largeur_iframe_pixel').val();
-		hauteur_iframe = $('#hauteur_iframe_pixel').val();
-	} else if ($('input[name=taille_iframe]:checked').val() == 'pourcentage') {
-		largeur_iframe = $('#largeur_iframe_pourcent').val() + '%';
-		hauteur_iframe = $('#hauteur_iframe_pourcent').val() + '%';
-	}
+    largeur_iframe = configuration.partie_configuration_carte[0].largeur_carte_apercu;
+	hauteur_iframe = configuration.partie_configuration_carte[0].hauteur_carte_apercu;
 
 	map.setZoom(configuration.partie_configuration_carte[0].zoom_carte_par_defaut);
 	$('#titre_sviewer').val(configuration.partie_configuration_carte[0].titre_carte_par_defaut);

@@ -140,6 +140,9 @@ footer {
 	width: 55%;
 }
 
+#visualisation_carte {
+	width: 40%;
+}
 
 .btn-copy {
 	width: 5%;
@@ -178,4 +181,40 @@ footer {
 
 #aide_configuration_carte, #aide_apercu, #aide_partage {
 	color: white;
+}
+
+@media (max-width: 600px) {
+	header {
+		max-width: 100%;
+	}
+	
+	.alignement_horizontal_espacement_entre, #champs_carte {
+		flex-direction: column;
+	}
+	
+	#visualisation_carte, #partage, #choix_donnees {
+		width: 100%;
+		margin: 25px 0 0;
+	}
+	
+	#champs_non_donnees {
+		width: 100%;
+	}
+	
+	#carte_emprise {
+		margin: 20px auto;
+	}
+	
+	#votre_carte, #partage {
+		padding-bottom: 20px;
+	}
+	
+	.flex_column {
+		flex-direction: column;
+	}
+	
+	.form-check {
+		padding-left: 1rem;
+		margin: 10px 0;
+	}
 }
