@@ -461,33 +461,25 @@ $('input[name=taille_iframe]').change(function() {
     afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
 });
 
-
+// récupération des informations contenues dans le fichier de configuration "configuration.json"
 $.when(get_configuration_data()).done(function(configuration) {
     $('#nom_application').html(configuration.nom_application);
     $('#titre_page').html(configuration.titre_application);
     $('#detail_text').html(configuration.detail_text);
     $('#explication_point_interrogation').append(' ' + configuration.explication_point_interrogation);
     $('#partie_configuration_carte').prepend(configuration.partie_configuration_carte[0].nom_partie_configuration_carte + ' ');
-    $('#infobulle_configuration_carte').html(configuration.partie_configuration_carte[0].infobulle_configuration_carte);
     $('#titre_partie_cadrage').prepend(configuration.partie_configuration_carte[0].nom_choix_cadrage + ' ');
-    $('#infobulle_choix_cadrage').html(configuration.partie_configuration_carte[0].infobulle_choix_cadrage);
     $('#titre_choix_donnees').prepend(configuration.partie_configuration_carte[0].nom_choix_donnees + ' ');
-    $('#infobulle_choix_donnees').html(configuration.partie_configuration_carte[0].infobulle_choix_donnees);
     $('#label_fond_plan').html(configuration.partie_configuration_carte[0].nom_label_fond_plan);
     $('#label_sites_orgs').html(configuration.partie_configuration_carte[0].nom_label_sites_orgs);
     $('#label_donnees_metiers').html(configuration.partie_configuration_carte[0].nom_label_donnees_metires);
     $('#titre_choix_interface').prepend(configuration.partie_configuration_carte[0].nom_choix_interface + ' ');
     $('#label_configuration_complete').append(configuration.partie_configuration_carte[0].nom_interface_complete);
-    $('#infobulle_choix_interface').html(configuration.partie_configuration_carte[0].infobulle_choix_interface);
     $('#label_configuration_allegee').append(configuration.partie_configuration_carte[0].nom_interface_allegee);
     $('#titre_titre_carte').prepend(configuration.partie_configuration_carte[0].nom_choix_titre_carte + ' ');
-    $('#infobulle_titre_carte').html(configuration.partie_configuration_carte[0].infobulle_titre_carte);
     $('#titre_taille_carte').html(configuration.partie_configuration_carte[0].nom_choix_taille_carte);
     $('#titre_apercu_carte').prepend(configuration.partie_apercu_carte[0].nom_partie_apercu_carte + ' ');
-    $('#infobulle_apercu_carte').html(configuration.partie_apercu_carte[0].infobulle_apercu_carte);
     $('#titre_partage').prepend(configuration.partie_partage[0].nom_partie_partage + ' ');
-    $('#infobulle_integrer_carte').html(configuration.partie_partage[0].infobulle_integrer_carte);
-    $('#infobulle_partage').html(configuration.partie_partage[0].infobulle_partage);
     $('#label_largeur_pixel').html(configuration.partie_partage[0].nom_label_largeur);
     $('#label_hauteur_pixel').html(configuration.partie_partage[0].nom_label_hauteur);
     $('#label_largeur_pourcent').html(configuration.partie_partage[0].nom_label_largeur);
@@ -495,13 +487,42 @@ $.when(get_configuration_data()).done(function(configuration) {
     $('#largeur_iframe').val(configuration.partie_configuration_carte[0].largeur_carte_par_defaut);
     $('#hauteur_iframe').val(configuration.partie_configuration_carte[0].hauteur_carte_par_defaut);
     $('#titre_envoie_lien').prepend(configuration.partie_partage[0].nom_champ_url + ' ');
-    $('#infobulle_envoyer_lien').html(configuration.partie_partage[0].infobulle_envoyer_lien);
     $('#lien_reducteur_url').html(configuration.partie_partage[0].nom_lien_reducteur_url);
     $('#titre_taille_iframe').html(configuration.partie_partage[0].nom_titre_taille_iframe);
     $('#label_taille_pixel').append(configuration.partie_partage[0].nom_label_pixel);
     $('#label_taille_pourcent').append(configuration.partie_partage[0].nom_label_pourcentage);
     $('#code_html_iframe').prepend(configuration.partie_partage[0].nom_champ_code_html + ' ');
     $('#version').append( "<p> version "+ configuration.numero_version +"</p>" );
+    
+    // informations d'aide
+    $('#aide_configuration_carte').popover({
+        content: configuration.partie_configuration_carte[0].infobulle_configuration_carte
+    });
+    $('#aide_titre_carte').popover({
+        content: configuration.partie_configuration_carte[0].infobulle_titre_carte
+    });
+    $('#aide_cadrage').popover({
+        content: configuration.partie_configuration_carte[0].infobulle_choix_cadrage
+    });
+    $('#aide_choix_interface').popover({
+        content: configuration.partie_configuration_carte[0].infobulle_choix_interface
+    });
+    $('#aide_choix_donnees').popover({
+        content: configuration.partie_configuration_carte[0].infobulle_choix_donnees
+    });
+    $('#aide_apercu').popover({
+        content: configuration.partie_apercu_carte[0].infobulle_apercu_carte
+    });
+    $('#aide_partage').popover({
+        content: configuration.partie_partage[0].infobulle_partage
+    });
+    $('#aide_envoyer_lien').popover({
+        content: configuration.partie_partage[0].infobulle_envoyer_lien
+    });
+    $('#aide_integrer_carte').popover({
+        content: configuration.partie_partage[0].infobulle_integrer_carte
+    });
+    
     url_api_cadastre = configuration.url_api_cadastre_Rennes_Metropole;
     url_sviewer = configuration.localisation_sviewer;
 

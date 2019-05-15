@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>sviewer generator</title>
 		<script src="assets/js/jquery-3.4.1.min.js"></script>
+		<script src="assets/js/popper.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/js/select2.min.js"></script>
 		<script src="assets/js/leaflet.js"></script>
@@ -27,28 +28,19 @@
 					<div id="votre_carte" class="panel">
 						<h2 id="partie_configuration_carte" class="titre">
 							<i class="fas fa-map-marked-alt"></i>
-							<span class="interrogation">
-								<i class="fas fa-question-circle img-titre"></i>
-								<span id="infobulle_configuration_carte" class="infobulle_up"></span>
-							</span>
+							<button type="button" id="aide_configuration_carte" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
 						</h2>
 						<div id="champs_carte">
 							<div id="champs_non_donnees">
 								<div id="titre" class="col-md-10 padding_bottom">
 									<h3 id="titre_titre_carte">
-										<span class="interrogation">
-											<i class="fas fa-question-circle"></i>
-											<span id="infobulle_titre_carte" class="infobulle"></span>
-										</span>
+										<button type="button" id="aide_titre_carte" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
 									</h3>
 									<input type="text" id="titre_sviewer" class="form-control" placeholder="titre carte" /> 
 								</div>
 								<div id="cadrage" class="padding_bottom">
 									<h3 id="titre_partie_cadrage" class="col-md-9">
-										<span class="interrogation">
-											<i class="fas fa-question-circle"></i>
-											<span id="infobulle_choix_cadrage" class="infobulle_up"></span>
-										</span>
+										<button type="button" id="aide_cadrage" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
 									</h3>
 									<div>
 										<div id="conteneur_liste_communes" class="col-md-10">
@@ -63,10 +55,7 @@
 								</div>
 								<div id="interface" class="col-md-9">
 									<h3 id="titre_choix_interface">
-										<span class="interrogation">
-											<i class="fas fa-question-circle"></i>
-											<span id="infobulle_choix_interface" class="infobulle_down"></span>
-										</span>
+										<button type="button" id="aide_choix_interface" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
 									</h3>
 									<div class="indentation">
 										<div class="form-check form-check-inline">
@@ -86,10 +75,7 @@
 							</div>
 							<div id="choix_donnees" class="padding_bottom">
 								<h3 id="titre_choix_donnees" class="col-md-7">
-									<span class="interrogation">
-										<i class="fas fa-question-circle"></i>
-										<span id="infobulle_choix_donnees" class="infobulle"></span>
-									</span>
+									<button type="button" id="aide_choix_donnees" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
 								</h3>
 								<div id="informations_carte">
 									<div id="conteneur_liste_fonds_plans" class="col-md-4">
@@ -121,10 +107,7 @@
 						<div id="visualisation_carte" class="panel">
 							<h2 id="titre_apercu_carte" class="titre">
 								<i class="fas fa-eye"></i>
-								<span class="interrogation">
-									<i class="fas fa-question-circle"></i>
-									<span id="infobulle_apercu_carte" class="infobulle_up"></span>
-								</span>
+								<button type="button" id="aide_apercu" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
 							</h2>
 							<div id="visualisation_resultat"> </div>
 						</div>
@@ -132,37 +115,29 @@
 						<div id="partage" class="panel">
 							<h2 id="titre_partage" class="titre">
 								<i class="fa fa-share-alt"></i>
-								<span class="interrogation">
-									<i class="fas fa-question-circle"></i>
-									<span id="infobulle_partage" class="infobulle_up"></span>
-								</span>
+								<button type="button" id="aide_partage" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
 							</h2>
 							<div id="champs_partage">
 								<div>
-									<h3 id="titre_envoie_lien" class="col-md-12">
-										<span class="interrogation">
-											<i class="fas fa-question-circle"></i>
-											<span id="infobulle_envoyer_lien" class="infobulle_up"></span>
-										</span>
-									</h3>
+									<span id="titre_envoie_lien" class="col-md-12">
+										<button type="button" id="aide_envoyer_lien" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
+									</span>
 									<div class="alignement_horizontale">
 										<div id="affichage_url_sviewer" class="col-md-10 padding_bottom"></div>
-										<div class="btn-copy h-75" id="copy_url"><i class="fas fa-copy"></i></div>
+										<div class="btn-copy h-75" id="copy_url" data-toggle="tooltip" data-placement="top" title="copier dans le presse papier">
+											<i class="fas fa-copy"></i></div>
 									</div>
 									<p class="col-md-12">
 										<a id="lien_reducteur_url" href="https://frama.link/#SoutenirFramasoft"></a>
 									</p>
 								</div>
 								<div>
-									<h3 id="code_html_iframe" class="col-md-12">
-										<span class="interrogation">
-											<i class="fas fa-question-circle"></i>
-											<span id="infobulle_integrer_carte" class="infobulle_up"></span>
-										</span>
-									</h3>
+									<span id="code_html_iframe" class="col-md-12">
+										<button type="button" id="aide_integrer_carte" class="btn btn-default btn-sm" data-toggle="popover" data-trigger="focus"><i class="fas fa-question-circle img-titre"></i></button>
+									</span>
 									<div>
 										<div class="alignement_horizontale col-md-12">
-											<h3 id="titre_taille_iframe"></h3>
+											<span id="titre_taille_iframe"></span>
 											<div>
 												<div class="form-check alignement_horizontale padding_bottom">
 													<div class="alignement_horizontale">
@@ -203,7 +178,7 @@
 									</div>
 									<div class="alignement_horizontale">
 										<div id="affichage_code" class="col-md-10"></div>
-										<div class="btn-copy h-75" id="copy_code"><i class="fas fa-copy"></i></div>
+										<div class="btn-copy h-75" id="copy_code" data-toggle="tooltip" data-placement="top" title="copier dans le presse papier"><i class="fas fa-copy"></i></div>
 									</div>
 								</div>
 							</div>
