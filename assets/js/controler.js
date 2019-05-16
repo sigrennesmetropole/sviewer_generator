@@ -1,9 +1,3 @@
-proj4.defs([
-    ["EPSG:4326", "+title=WGS 84, +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"],
-    ["EPSG:3857", "+title=Web Spherical Mercator, +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs"],
-    ["EPSG:3948", "+proj=lcc +lat_1=47.25 +lat_2=48.75 +lat_0=48 +lon_0=3 +x_0=1700000 +y_0=7200000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"]
-]);
-
 // definition du fond de plan pour la carte servant à determiner l'emprise
 var layer_pvci = L.tileLayer('https://public.sig.rennesmetropole.fr/geowebcache/service/tms/1.0.0/ref_fonds%3Apvci@EPSG%3A3857@png/{z}/{x}/{y}.png', {
     attribution: 'Plan de ville communal et intercommunal, Référentiel voies et adresses : Rennes Métropole',
@@ -34,6 +28,8 @@ var configuration_sviewer_selectionne  = $('input[name=configuration_sviewer]:ch
 var titre_carte = $('#titre_sviewer').val();
 var largeur_iframe;
 var hauteur_iframe;
+var hauteur_iframe_glimpse;
+var largeur_iframe_glimpse; 
 var map_centre_lat = map.getCenter().lat;
 var map_centre_lng = map.getCenter().lng;
 var map_zoom = map.getZoom();
@@ -265,7 +261,7 @@ function afficher_url_sviewer(url_sviewer) {
 * @Param url_sviewer   l'url du sviewer à afficher  
 */
 function afficher_code_iframe(url_sviewer) {
-	var iframe = '<iframe width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +'frameborder=\'0\'"> </iframe>';
+	var iframe = '<iframe frameborder="0" width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +'"> </iframe>';
 	var contenu_html = '<div class="padding_bottom">'
 						+ '<textarea id="code_iframe" onchange="gerer_changement_url(\'code_iframe\')" class="form-control">' + iframe + ' </textarea> </div>';
 	$('#affichage_code').html(contenu_html);
@@ -278,7 +274,7 @@ function afficher_code_iframe(url_sviewer) {
 * @Param url_sviewer   l'url du sviewer à afficher 
 */
 function afficher_resultat_iframe(url_sviewer) {
-	var iframe = '<iframe id="iframe_sviewer" width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +' frameborder=\'0\'"> </iframe>';
+	var iframe = '<iframe id="iframe_sviewer" width="'+ largeur_iframe_glimpse +'" height="'+ hauteur_iframe_glimpse +'" src="'+ url_sviewer +'"> </iframe>';
 	$('#visualisation_resultat').html(iframe);
 }
 
@@ -329,17 +325,6 @@ $('#liste_communes').on('select2:select', function (e) {
 			afficher_coordonnees_carte(geojsonMap,  '#6a00ff');
 		});
 	}
-	
-	/*var data = e.params.data;
-	if ((data.id != "") && (data.id != 1)) {
-		var coord_4326 = proj4('EPSG:3857', 'EPSG:4326', data.coordonnees);
-		var coord_x_4326 = proj4('EPSG:3857', 'EPSG:4326', data.coordonnees[0]);
-		var coord_y_4326 = proj4('EPSG:3857', 'EPSG:4326', data.coordonnees[1]);
-		console.log(coord_4326);
-		//console.log(Math.trunc(coord_x_4326) + ' ' + Math.trunc(coord_y_4326));
-		geojsonMap = coord_4326;
-		afficher_coordonnees_carte(geojsonMap,  '#6a00ff');
-	}*/
 	
     nom_commune_selectionne = $('#liste_communes').val();
     var url_sviewer = generer_url_sviewer();
@@ -455,25 +440,25 @@ map.on('mouseup', function() {
 });
 
 $('#largeur_iframe_pixel').on('input', function() {
-	//largeur_iframe = $('#largeur_iframe_pixel').val();
+	largeur_iframe = $('#largeur_iframe_pixel').val();
  	var url_sviewer = generer_url_sviewer();
 	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
  });
 
 $('#hauteur_iframe_pixel').on('input', function() {
-	//hauteur_iframe = $('#hauteur_iframe_pixel').val();
+	hauteur_iframe = $('#hauteur_iframe_pixel').val();
  	var url_sviewer = generer_url_sviewer();
 	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
  });
 
 $('#largeur_iframe_pourcent').on('input', function() {
-	//largeur_iframe = $('#largeur_iframe_pourcent').val() + '%';
+	largeur_iframe = $('#largeur_iframe_pourcent').val() + '%';
  	var url_sviewer = generer_url_sviewer();
 	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
  });
 
 $('#hauteur_iframe_pourcent').on('input', function() {
-	//hauteur_iframe = $('#hauteur_iframe_pourcent').val() + '%';
+	hauteur_iframe = $('#hauteur_iframe_pourcent').val() + '%';
  	var url_sviewer = generer_url_sviewer();
 	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
  });
@@ -569,6 +554,9 @@ $.when(get_configuration_data()).done(function(configuration) {
 
     largeur_iframe = configuration.partie_configuration_carte[0].largeur_carte_apercu;
 	hauteur_iframe = configuration.partie_configuration_carte[0].hauteur_carte_apercu;
+	
+    largeur_iframe_glimpse = configuration.partie_configuration_carte[0].largeur_carte_apercu;
+	hauteur_iframe_glimpse = configuration.partie_configuration_carte[0].hauteur_carte_apercu;
 
 	map.setZoom(configuration.partie_configuration_carte[0].zoom_carte_par_defaut);
 	$('#titre_sviewer').val(configuration.partie_configuration_carte[0].titre_carte_par_defaut);
