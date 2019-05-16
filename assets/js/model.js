@@ -16,14 +16,6 @@ function get_liste_communes(api_cadastre) {
 	});
 }
 
-function get_liste_communes2() {
-	return $.ajax({
-		type: 'GET',
-		url: 'assets/json/3857_Coordonnees_centre_bourg.geojson',
-		//dataType: "json"
-	});
-}
-
 // Récupération les differents couches provenant de la base de donnée sites et organismes
 function get_donnees_sites_orgs() {
 	return $.ajax({

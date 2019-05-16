@@ -343,6 +343,7 @@ $("#liste_site_org_cb").change(function() {
     }
 });
 
+
 $("#liste_equipements_techniques_cb").change(function() {
     if(this.checked) {
    		data_donnees_metiers.forEach(function(data) {
@@ -561,6 +562,9 @@ $.when(get_configuration_data()).done(function(configuration) {
 	map.setZoom(configuration.partie_configuration_carte[0].zoom_carte_par_defaut);
 	$('#titre_sviewer').val(configuration.partie_configuration_carte[0].titre_carte_par_defaut);
 	titre_carte = $('#titre_sviewer').val();
+	
+	$( "#liste_site_org_cb" ).prop( "checked", false);
+	$( "#liste_equipements_techniques_cb" ).prop( "checked", false);
 
     $.when(get_liste_communes(url_api_cadastre)).done(function(liste_communes) {
 		var data_communes = $.map(liste_communes, function (commune) {
@@ -570,17 +574,6 @@ $.when(get_configuration_data()).done(function(configuration) {
 	    var url_sviewer = generer_url_sviewer();
 	   	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
 	});
-    
-   /* $.when(get_liste_communes2()).done(function(liste_communes) {
-    	var json_parse = JSON.parse(liste_communes);
-		var data_communes = $.map(json_parse.features, function (commune) {
-	    	return { text: commune.properties.nom, id: commune.properties.code_insee,
-	    			coordonnees: commune.geometry.coordinates, zoom: commune.properties.Zoom }
-		});
-		afficher_select2('liste_communes', data_communes, 'choix de la commune', true, false);
-	    var url_sviewer = generer_url_sviewer();
-	   	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
-	});*/
 });
 
 
@@ -637,6 +630,4 @@ $('#copy_code').on('click', function(e) {
 	$("#code_iframe").select();
 	document.execCommand('copy');
 });
-
-
 
