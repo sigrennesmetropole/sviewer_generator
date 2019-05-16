@@ -1,10 +1,9 @@
-#conteneur_principal {
+#conteneur_principal, #conteneur_principal_mentions_legales {
 	font-family: Arial, sans-serif;
 	font-size: 14px;
-	position: relative;
 }
 
-#application {
+#application, #mentions_legales {
 	margin-left: 1%;
 	margin-right: 1%;
 }

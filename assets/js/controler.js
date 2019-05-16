@@ -489,8 +489,8 @@ $('input[name=taille_iframe]').change(function() {
 
 // récupération des informations contenues dans le fichier de configuration "configuration.json"
 $.when(get_configuration_data()).done(function(configuration) {
-    $('#nom_application').html(configuration.nom_application);
-    $('#titre_page').html(configuration.titre_application);
+    $('.nom_application').html(configuration.nom_application);
+    $('.text_explicatif').html(configuration.titre_application);
     $('#detail_text').html(configuration.detail_text);
     $('#explication_point_interrogation').append(' ' + configuration.explication_point_interrogation);
     $('#partie_configuration_carte').prepend(configuration.partie_configuration_carte[0].nom_partie_configuration_carte + ' ');
@@ -518,7 +518,7 @@ $.when(get_configuration_data()).done(function(configuration) {
     $('#label_taille_pixel').append(configuration.partie_partage[0].nom_label_pixel);
     $('#label_taille_pourcent').append(configuration.partie_partage[0].nom_label_pourcentage);
     $('#code_html_iframe').prepend(configuration.partie_partage[0].nom_champ_code_html + ' ');
-    $('#version').append( "<p> version "+ configuration.numero_version +"</p>" );
+    $('.version').append( "<p> version "+ configuration.numero_version +"</p>" );
     
     // informations d'aide
     $('#aide_configuration_carte').popover({
