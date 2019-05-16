@@ -80,6 +80,7 @@
 }
 
 #visualisation_resultat {
+	height: 88%;
 	text-align: center;
 }
 
@@ -141,7 +142,7 @@ footer {
 }
 
 #visualisation_carte {
-	width: 40%;
+	width: 44%;
 }
 
 .btn-copy {
@@ -181,6 +182,10 @@ footer {
 
 #aide_configuration_carte, #aide_apercu, #aide_partage {
 	color: white;
+}
+
+.form-control {
+	font-size: 14px;
 }
 
 @media (max-width: 600px) {

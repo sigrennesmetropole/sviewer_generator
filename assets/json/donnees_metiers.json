@@ -1,17 +1,17 @@
 {
  	"donnees_metiers" : [
 		{
-                  "id": "Déchèterie",
-                  "nom": "Déchèterie",
-                  "couche": "app:sv_metier_v_decheterie_pf_dv"
-                },
+            "id": 0,
+            "nom": "Déchèterie",
+       		"couche": "app:sv_metier_v_decheterie_pf_dv"
+        },
 		{
-		  "id": "Point d'apport volontaire",
+		  "id": 1,
 		  "nom": "Point d'apport volontaire",
 		  "couche": "app:sv_metier_v_gesbac_pav"
 		},
 		{
-		  "id": "Composteur collectif",
+		  "id": 2,
 		  "nom": "Composteur collectif",
 		  "couche": "app:sv_metier_composteur_coll"
 		}

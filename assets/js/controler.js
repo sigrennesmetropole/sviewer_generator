@@ -1,3 +1,9 @@
+proj4.defs([
+    ["EPSG:4326", "+title=WGS 84, +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"],
+    ["EPSG:3857", "+title=Web Spherical Mercator, +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs"],
+    ["EPSG:3948", "+proj=lcc +lat_1=47.25 +lat_2=48.75 +lat_0=48 +lon_0=3 +x_0=1700000 +y_0=7200000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"]
+]);
+
 // definition du fond de plan pour la carte servant à determiner l'emprise
 var layer_pvci = L.tileLayer('https://public.sig.rennesmetropole.fr/geowebcache/service/tms/1.0.0/ref_fonds%3Apvci@EPSG%3A3857@png/{z}/{x}/{y}.png', {
     attribution: 'Plan de ville communal et intercommunal, Référentiel voies et adresses : Rennes Métropole',
@@ -10,22 +16,6 @@ var layer_pvci = L.tileLayer('https://public.sig.rennesmetropole.fr/geowebcache/
 
 var url_sviewer;
 
-/*var layer_sviewer = L.tileLayer('https://public.sig.rennesmetropole.fr/sviewer/', {
-    attribution: 'sviewer',
-    id: 2,
-    center: [48.1, -1.67],
-    minZoom: 0,
-    maxZoom: 20,
-    tms: true,
-});*/
-
-var layer_sviewer = L.tileLayer('https://public.sig.rennesmetropole.fr/sviewer/', {
-    attribution: 'sviewer',
-    id: 2,
-    minZoom: 0,
-    maxZoom: 20,
-    tms: true,
-});
 
 //initialisation de la carte servant à determiner l'emprise
 var map = L.map('carte_emprise', {
@@ -51,10 +41,10 @@ var map_zoom = map.getZoom();
 var data_sites_orgs;
 var data_donnees_metiers;
 var url_api_cadastre;
+var url_geoserver;
 
 if ($('input[name=taille_iframe]:checked').val() == 'pixels') {
 	largeur_iframe = $('#largeur_iframe_pixel').val();
-	console.log(largeur_iframe);
 	hauteur_iframe = $('#hauteur_iframe_pixel').val();
 	$('#largeur_iframe_pixel').attr("disabled",false);
 	$('#hauteur_iframe_pixel').attr("disabled",false);
@@ -63,13 +53,49 @@ if ($('input[name=taille_iframe]:checked').val() == 'pixels') {
 } else if ($('input[name=taille_iframe]:checked').val() == 'pourcentage') {
 	largeur_iframe = $('#largeur_iframe_pourcent').val() + '%';
 	hauteur_iframe = $('#hauteur_iframe_pourcent').val() + '%';
-	console.log(largeur_iframe);
 	$('#largeur_iframe_pixel').attr("disabled",true);
 	$('#hauteur_iframe_pixel').attr("disabled",true);
 	$('#largeur_iframe_pourcent').attr("disabled",false);
 	$('#hauteur_iframe_pourcent').attr("disabled",false);
 }
 
+/**
+ * 
+ * @returns
+ */
+function check_equipements_techniques_selectionnes() {
+	if (typeof equipements_techniques_selectionnes !== 'undefined') {
+		equipements_techniques_selectionnes_length = equipements_techniques_selectionnes.length;
+	} else {
+		equipements_techniques_selectionnes_length = -1;
+	}
+	for (var i = 0; i < equipements_techniques_selectionnes_length; i++) {
+		getcapabilities_request = url_geoserver + equipements_techniques_selectionnes[i].replace(':','/') + '/wms?service=wms&request=getcapabilities';
+		/*$.ajax(getcapabilities_request).fail(function() {
+			console.log('coucou');
+			equipements_techniques_selectionnes.splice(i,1);
+		});*/    
+	}
+}
+
+/**
+ * 
+ * @returns
+ */
+function check_theme_site_orgs_selectionnes() {
+	if (typeof theme_site_orgs_selectionnes !== 'undefined') {
+		theme_site_orgs_selectionnes_length = theme_site_orgs_selectionnes.length;
+	} else {
+		theme_site_orgs_selectionnes_length = -1;
+	}
+	for (i = 0; i < theme_site_orgs_selectionnes_length; i++) {
+		getcapabilities_request = url_geoserver + theme_site_orgs_selectionnes[i].replace(':','/') + '/wms?service=wms&request=getcapabilities';
+		
+		$.ajax(getcapabilities_request).fail(function(xhr, status) {
+			 // console.log(xhr + ' ' + status);
+		});
+	}
+}
 
 /**
 * Creer l'url permettant d'afficher le sviewer à partir des variables contenant les informations issues du formulaire
@@ -78,7 +104,7 @@ if ($('input[name=taille_iframe]:checked').val() == 'pixels') {
 function generer_url_sviewer() {
 	var theme_site_orgs_selectionnes_length;
 	var equipements_techniques_selectionnes_length;
-
+		
 	var url = url_sviewer + '?x=' + map_centre_lng + '&y=' + map_centre_lat 
 				+ '&z=' + map_zoom + '&lb=' + fond_plan_defaut_selectionne;
 	if (titre_carte != '') {
@@ -99,20 +125,18 @@ function generer_url_sviewer() {
 	// gestion des couches à afficher
 	if (theme_site_orgs_selectionnes_length > 0) {
 		url += '&layers=';
-		url_layers = theme_site_orgs_selectionnes[0];
-		for (var i = 1; i < theme_site_orgs_selectionnes_length - 1; i++) {
+		//url_layers = theme_site_orgs_selectionnes[0];
+		for (var i = 0; i < theme_site_orgs_selectionnes_length; i++) {
 			url_layers += ',' + theme_site_orgs_selectionnes[i];
 		}
 		if (equipements_techniques_selectionnes_length > 0) {
-			for (var j = 0; j < equipements_techniques_selectionnes_length - 1; j++) {
-				url_layers += ',' + equipements_techniques_selectionnes[j];
-			}
+			url_layers += ',' + equipements_techniques_selectionnes[j];
 		}
 		url += encodeURIComponent(url_layers);
 	} else if (equipements_techniques_selectionnes_length > 0) {
 		url += '&layers=';
 		url_layers = equipements_techniques_selectionnes[0];
-		for (var k = 1; k < equipements_techniques_selectionnes_length - 1; k++) {
+		for (var k = 1; k < equipements_techniques_selectionnes_length; k++) {
 			url_layers += ',' + equipements_techniques_selectionnes[k];
 		}
 		url += encodeURIComponent(url_layers);
@@ -122,7 +146,6 @@ function generer_url_sviewer() {
 	if (configuration_sviewer_selectionne  == 'allegee') {
 		url += "&c=light";
 	}
-
 	return url;
 }
 
@@ -242,7 +265,7 @@ function afficher_url_sviewer(url_sviewer) {
 * @Param url_sviewer   l'url du sviewer à afficher  
 */
 function afficher_code_iframe(url_sviewer) {
-	var iframe = '<iframe width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +'"> </iframe>';
+	var iframe = '<iframe width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +'frameborder=\'0\'"> </iframe>';
 	var contenu_html = '<div class="padding_bottom">'
 						+ '<textarea id="code_iframe" onchange="gerer_changement_url(\'code_iframe\')" class="form-control">' + iframe + ' </textarea> </div>';
 	$('#affichage_code').html(contenu_html);
@@ -255,7 +278,7 @@ function afficher_code_iframe(url_sviewer) {
 * @Param url_sviewer   l'url du sviewer à afficher 
 */
 function afficher_resultat_iframe(url_sviewer) {
-	var iframe = '<iframe id="iframe_sviewer" width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +'"> </iframe>';
+	var iframe = '<iframe id="iframe_sviewer" width="'+ largeur_iframe +'" height="'+ hauteur_iframe +'" src="'+ url_sviewer +' frameborder=\'0\'"> </iframe>';
 	$('#visualisation_resultat').html(iframe);
 }
 
@@ -306,7 +329,18 @@ $('#liste_communes').on('select2:select', function (e) {
 			afficher_coordonnees_carte(geojsonMap,  '#6a00ff');
 		});
 	}
-
+	
+	/*var data = e.params.data;
+	if ((data.id != "") && (data.id != 1)) {
+		var coord_4326 = proj4('EPSG:3857', 'EPSG:4326', data.coordonnees);
+		var coord_x_4326 = proj4('EPSG:3857', 'EPSG:4326', data.coordonnees[0]);
+		var coord_y_4326 = proj4('EPSG:3857', 'EPSG:4326', data.coordonnees[1]);
+		console.log(coord_4326);
+		//console.log(Math.trunc(coord_x_4326) + ' ' + Math.trunc(coord_y_4326));
+		geojsonMap = coord_4326;
+		afficher_coordonnees_carte(geojsonMap,  '#6a00ff');
+	}*/
+	
     nom_commune_selectionne = $('#liste_communes').val();
     var url_sviewer = generer_url_sviewer();
    	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
@@ -451,15 +485,21 @@ $('input[name=taille_iframe]').change(function() {
 		$('#hauteur_iframe_pixel').attr("disabled",false);
 		$('#largeur_iframe_pourcent').attr("disabled",true);
 		$('#hauteur_iframe_pourcent').attr("disabled",true);
+		largeur_iframe = $('#largeur_iframe_pixel').val();
+		hauteur_iframe = $('#hauteur_iframe_pixel').val();
 	} else if (unite_taille_iframe_selectionne == 'pourcentage') {
 		$('#largeur_iframe_pixel').attr("disabled",true);
 		$('#hauteur_iframe_pixel').attr("disabled",true);
 		$('#largeur_iframe_pourcent').attr("disabled",false);
 		$('#hauteur_iframe_pourcent').attr("disabled",false);
+		largeur_iframe = $('#largeur_iframe_pourcent').val()+'%';
+		hauteur_iframe = $('#hauteur_iframe_pourcent').val()+'%';
 	}
 	var url_sviewer = generer_url_sviewer();
     afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
 });
+
+
 
 // récupération des informations contenues dans le fichier de configuration "configuration.json"
 $.when(get_configuration_data()).done(function(configuration) {
@@ -525,6 +565,7 @@ $.when(get_configuration_data()).done(function(configuration) {
     
     url_api_cadastre = configuration.url_api_cadastre_Rennes_Metropole;
     url_sviewer = configuration.localisation_sviewer;
+    url_geoserver = configuration.url_geoserver;
 
     largeur_iframe = configuration.partie_configuration_carte[0].largeur_carte_apercu;
 	hauteur_iframe = configuration.partie_configuration_carte[0].hauteur_carte_apercu;
@@ -541,6 +582,17 @@ $.when(get_configuration_data()).done(function(configuration) {
 	    var url_sviewer = generer_url_sviewer();
 	   	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
 	});
+    
+   /* $.when(get_liste_communes2()).done(function(liste_communes) {
+    	var json_parse = JSON.parse(liste_communes);
+		var data_communes = $.map(json_parse.features, function (commune) {
+	    	return { text: commune.properties.nom, id: commune.properties.code_insee,
+	    			coordonnees: commune.geometry.coordinates, zoom: commune.properties.Zoom }
+		});
+		afficher_select2('liste_communes', data_communes, 'choix de la commune', true, false);
+	    var url_sviewer = generer_url_sviewer();
+	   	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
+	});*/
 });
 
 
