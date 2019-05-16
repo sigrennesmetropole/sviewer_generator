@@ -8,6 +8,11 @@
 	margin-right: 1%;
 }
 
+#mentions_legales {
+	min-height: 81vh;
+}
+
+
 #votre_carte {
 	margin-bottom: 1%;
 	padding-bottom: 1%;
@@ -107,6 +112,10 @@
 header {
 	display: flex;
 	align-items: center;
+}
+
+h1 {
+	font-size: 24px;
 }
 
 h2 {
