@@ -121,8 +121,8 @@ function generer_url_sviewer() {
 	// gestion des couches à afficher
 	if (theme_site_orgs_selectionnes_length > 0) {
 		url += '&layers=';
-		//url_layers = theme_site_orgs_selectionnes[0];
-		for (var i = 0; i < theme_site_orgs_selectionnes_length; i++) {
+		url_layers = theme_site_orgs_selectionnes[0];
+		for (var i = 1; i < theme_site_orgs_selectionnes_length; i++) {
 			url_layers += ',' + theme_site_orgs_selectionnes[i];
 		}
 		if (equipements_techniques_selectionnes_length > 0) {
