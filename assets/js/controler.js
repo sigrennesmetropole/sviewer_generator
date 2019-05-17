@@ -522,6 +522,11 @@ $.when(get_configuration_data()).done(function(configuration) {
     $('#code_html_iframe').prepend(configuration.partie_partage[0].nom_champ_code_html + ' ');
     $('.version').append( "<p> version "+ configuration.numero_version +"</p>" );
     
+    $('#largeur_iframe_pixel').attr('value', configuration.partie_partage[0].largeur_iframe_pixel_defaut);
+    $('#hauteur_iframe_pixel').attr('value', configuration.partie_partage[0].hauteur_iframe_pixel_defaut);
+    $('#largeur_iframe_pourcent').attr('value', configuration.partie_partage[0].largeur_iframe_pourcent_defaut);
+    $('#hauteur_iframe_pourcent').attr('value', configuration.partie_partage[0].hauteur_iframe_pourcent_defaut);
+    
     // informations d'aide
     $('#aide_configuration_carte').popover({
         content: configuration.partie_configuration_carte[0].infobulle_configuration_carte

@@ -48,7 +48,11 @@
  			"nom_label_pixel": "Pixels",
  			"nom_label_pourcentage": "%",
  			"nom_label_largeur" : "largeur",
- 			"nom_label_hauteur" : "hauteur"
+ 			"nom_label_hauteur" : "hauteur",
+ 			"largeur_iframe_pixel_defaut": 500,
+ 			"hauteur_iframe_pixel_defaut": 400,
+ 			"largeur_iframe_pourcent_defaut": 100,
+ 			"hauteur_iframe_pourcent_defaut": 100
  		}
  	],
  	"localisation_sviewer" : "https://public-test.sig.rennesmetropole.fr/sviewer/",
