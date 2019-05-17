@@ -20,7 +20,7 @@
  			"nom_interface_complete" : "complète",
  			"nom_interface_allegee" : "allégée",
  			"nom_choix_titre_carte" : "Choisissez le titre de la carte",
- 			"infobulle_titre_carte": "Titre de la carte qui apparait en haut dans le cas d'une configuration complète",
+ 			"infobulle_titre_carte": "Titre de la carte qui apparait en haut du visualiseur dans le cas d'une configuration complète",
  			"titre_carte_par_defaut" : "Ma carte",
  			"nom_choix_taille_carte" : "Taille de l'iframe",
  			"largeur_carte_apercu": "100%",
