@@ -126,7 +126,9 @@ function generer_url_sviewer() {
 			url_layers += ',' + theme_site_orgs_selectionnes[i];
 		}
 		if (equipements_techniques_selectionnes_length > 0) {
-			url_layers += ',' + equipements_techniques_selectionnes[j];
+			for (var j = 0; j < equipements_techniques_selectionnes_length; j++) {
+				url_layers += ',' + equipements_techniques_selectionnes[j];;
+			}
 		}
 		url += encodeURIComponent(url_layers);
 	} else if (equipements_techniques_selectionnes_length > 0) {
