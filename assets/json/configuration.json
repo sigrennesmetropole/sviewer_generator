@@ -58,8 +58,5 @@
  	"localisation_sviewer" : "https://public-test.sig.rennesmetropole.fr/sviewer/",
  	"url_geoserver": "https://public-test.sig.rennesmetropole.fr/geoserver/",
  	"url_api_cadastre_Rennes_Metropole" : "https://api-cadastre.sig.rennesmetropole.fr/v1/"
-<<<<<<< HEAD
-}
-=======
+	}
  }
->>>>>>> e91cc6522306a896aa60aa5736b1dc7a3c3b4f62
