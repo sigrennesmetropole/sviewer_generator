@@ -86,10 +86,6 @@ function check_theme_site_orgs_selectionnes() {
 	}
 	for (i = 0; i < theme_site_orgs_selectionnes_length; i++) {
 		getcapabilities_request = url_geoserver + theme_site_orgs_selectionnes[i].replace(':','/') + '/wms?service=wms&request=getcapabilities';
-		
-		$.ajax(getcapabilities_request).fail(function(xhr, status) {
-			 // console.log(xhr + ' ' + status);
-		});
 	}
 }
 
@@ -276,7 +272,9 @@ function afficher_code_iframe(url_sviewer) {
 * @Param url_sviewer   l'url du sviewer à afficher 
 */
 function afficher_resultat_iframe(url_sviewer) {
+	
 	var iframe = '<iframe id="iframe_sviewer" width="'+ largeur_iframe_glimpse +'" height="'+ hauteur_iframe_glimpse +'" src="'+ url_sviewer +'"> </iframe>';
+	var webComponent = '<link rel="import" href="'+ url_sviewer +'">';
 	$('#visualisation_resultat').html(iframe);
 }
 
@@ -315,19 +313,40 @@ var languageFr = {
     }
 };
 
+/**
+ * 
+ * @param linkParams paremetre de l'url envoyé par le sviewer
+ * 
+ */
+function interactWithSviewer(linkParams) {
+	if (typeof linkParams.y !== 'undefined') {
+		map_centre_lat = linkParams.y;
+	}
+	if (typeof linkParams.x !== 'undefined') {
+		map_centre_lng = linkParams.x;
+	}
+	if (typeof linkParams.z !== 'undefined') {
+		map_zoom = linkParams.z;
+	}
+	if (typeof linkParams.title !== 'undefined') {
+		titre_carte = linkParams.title;
+	}
+	if (typeof linkParams.lb !== 'undefined') {
+		fond_plan_defaut_selectionne = linkParams.lb;
+	}
+	
+	var url_sviewer = generer_url_sviewer();
+	afficher_url_sviewer(url_sviewer);
+    afficher_code_iframe(url_sviewer);
+}
 
 // récuperation de la commune choisi lors de la selection dans la liste déroulante 
 // puis modification de l'url du sviewer, du code html de l'iframe et de l'affichage du résultat
 $('#liste_communes').on('select2:select', function (e) {
-	// colorie sur la carte la commune qui a été séléctionnée dans le champ "commune"
-	var data = e.params.data;
-	if ((data.id != "") && (data.id != 1)) {
-		$.get(url_api_cadastre + 'epsg:4326/commune/'+data.id, function(dataApiJson) {
-			var geojsonMap = dataApiJson.coordonnees;
-			afficher_coordonnees_carte(geojsonMap,  '#6a00ff');
-		});
-	}
-	
+	var commune_choisie = e.params.data;
+	map_centre_lng = commune_choisie.x;
+	map_centre_lat = commune_choisie.y;
+	map_zoom = commune_choisie.zoom;
     nom_commune_selectionne = $('#liste_communes').val();
     var url_sviewer = generer_url_sviewer();
    	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
@@ -572,10 +591,12 @@ $.when(get_configuration_data()).done(function(configuration) {
 	
 	$( "#liste_site_org_cb" ).prop( "checked", false);
 	$( "#liste_equipements_techniques_cb" ).prop( "checked", false);
-
-    $.when(get_liste_communes(url_api_cadastre)).done(function(liste_communes) {
-		var data_communes = $.map(liste_communes, function (commune) {
-	    	return { text: commune.name, id: commune.idComm }
+    
+    $.when(get_liste_communes()).done(function(liste_communes) {
+		var data_communes = $.map(liste_communes.features, function (commune) {
+	    	return { text: commune.properties.nom, id: commune.properties.code_insee,
+	    			x: commune.properties.x, y: commune.properties.y, zoom: commune.properties.Zoom,
+	    			coordonnees: commune.geometry.coordinates}
 		});
 		afficher_select2('liste_communes', data_communes, 'choix de la commune', true, false);
 	    var url_sviewer = generer_url_sviewer();

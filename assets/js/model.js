@@ -7,11 +7,11 @@ function get_configuration_data() {
 	});
 }
 
-// Récupération la liste des communes issue de l'api cadastre
-function get_liste_communes(api_cadastre) {
+// Récupération la liste des communes à partir du fichier 3857_Coordonnees_centre_bourg.geojson 
+function get_liste_communes() {
 	return $.ajax({
 		type: 'GET',
-		url: api_cadastre + 'communes',
+		url: 'assets/json/3857_Coordonnees_centre_bourg.geojson',
 		dataType: "json"
 	});
 }
@@ -43,7 +43,7 @@ function get_donnees_metiers() {
 	});
 }
 
-//Récupération des différents fonds de plan mis à disposition
+//
 function requette_getcapabilities(test_url) {
 	return $.ajax({
 		type: 'GET',

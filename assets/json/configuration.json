@@ -2,30 +2,30 @@
  	"nom_application" : "sviewer generator",
  	"numero_version" : "1.2",
  	"titre_application" : "Générateur de cartes dynamiques simples",
- 	"detail_text" : "Le générateur de visualiseurs vous permet de réaliser des cartes simples dynamiques, à partir des données diffusées sur la plateforme publique de Rennes Métropole.\nCes cartes peuvent être partagées à travers une URL ou une balise iframe à intégrer dans votre site internet.",
+ 	"detail_text" : "Ce générateur permet de réaliser des cartes simples dynamiques, à partir des données diffusées sur la plateforme publique de Rennes Métropole.",
  	"explication_point_interrogation": "Cliquez sur le bouton pour avoir plus de renseignements",
  	"partie_configuration_carte" : [
  		{
- 			"nom_partie_configuration_carte" : "Votre carte",
+ 			"nom_partie_configuration_carte" : "Configurez votre carte",
  			"infobulle_configuration_carte": "Personnaliser la carte en modifiant certains paramètres",
- 			"nom_choix_cadrage" : "Choisissez votre cadrage",
- 			"infobulle_choix_cadrage": "Cadrer la carte sur l'emprise d'une commune",
+ 			"nom_choix_cadrage" : "Choisissez le cadrage de départ",
+ 			"infobulle_choix_cadrage": "Cadrer la carte sur l'emprise d'une commune, il est posible de zommer à tout moment sur la carte et de modifier le cadrage",
  			"nom_choix_donnees" : "Choisissez vos données",
  			"infobulle_choix_donnees": "Cet outil permet d'intégrer dans vos cartes un sous ensemble des données publiques de Rennes Métropole.Il est possible d'intégrer des données sur les   organismes publics, semi-publics et privés recevant du public et issus de la base  sites et organismes ainsi que des données métiers gérées par les services de Rennes Métropole et de la ville de Rennes. La description des données utilisées est consultable sur le catalogue du portail public de diffusion de données géographiques de Rennes Métropole.",
  			"nom_label_fond_plan" : "Fond de plan par défaut",
- 			"nom_label_sites_orgs" : "Données organismes de Rennes Métropole",
+ 			"nom_label_sites_orgs" : "Données organismes",
  			"nom_label_donnees_metires" : "Données métiers",
- 			"nom_choix_interface" : "Choisissez votre interface",
+ 			"nom_choix_interface" : "Choisissez l'interface",
  			"infobulle_choix_interface": "L'interface complète contient tous les menus, l'interface allégée ne contient que la carte. Il est possible avec une interface allégée et un cadrage adapté de réaliser une carte centrée sur un organisme en particulier.",
  			"nom_interface_complete" : "complète",
  			"nom_interface_allegee" : "allégée",
- 			"nom_choix_titre_carte" : "Donnez un titre à votre carte",
- 			"infobulle_titre_carte": "Titre de la carte qui apparait en haut dans le cas d'une configuration complète",
- 			"titre_carte_par_defaut" : "sviewer de Rennes Métropole",
- 			"nom_choix_taille_carte" : "Donnez une taille à votre carte",
+ 			"nom_choix_titre_carte" : "Choisissez le titre de la carte",
+ 			"infobulle_titre_carte": "Titre de la carte qui apparait en haut du visualiseur dans le cas d'une configuration complète",
+ 			"titre_carte_par_defaut" : "Ma carte",
+ 			"nom_choix_taille_carte" : "Taille de l'iframe",
  			"largeur_carte_apercu": "100%",
  			"hauteur_carte_apercu" : "100%",
- 			"zoom_carte_par_defaut" : 12
+ 			"zoom_carte_par_defaut" : 15
  		}
  	],
  	"partie_apercu_carte" : [
@@ -36,11 +36,11 @@
  	],
  	"partie_partage" : [
  		{
- 			"nom_partie_partage" : "Partage",
+ 			"nom_partie_partage" : "Partagez votre carte",
  			"infobulle_partage": "Votre carte vous plaît, partagez là avec d'autres internautes !",
- 			"nom_champ_code_html" : "intégrer une carte",
+ 			"nom_champ_code_html" : "Intégrer une carte",
  			"infobulle_integrer_carte": "Affiche et vous permet de récupérer dans le presse papier le lien vers le code iframe de votre carte. La taille de la carte est personnalisable et modifiée dans les paramètres de l'iframe. Cette fonctionnalité  vous permet d'intégrer facilement la carte dans votre site internet.",
- 			"nom_champ_url" : "envoyer un lien",
+ 			"nom_champ_url" : "Envoyer un lien",
  			"infobulle_envoyer_lien": "Affiche et vous permet de récupérer dans le presse papier le lien vers votre carte. Si vous souhaitez personnaliser votre url, un lien vers un outil de réduction d'url est proposé.",
  			"lien_reducteur_url": "https://frama.link/#SoutenirFramasoft",
  			"nom_lien_reducteur_url": "réducteur d'URL",
@@ -58,4 +58,4 @@
  	"localisation_sviewer" : "https://public-test.sig.rennesmetropole.fr/sviewer/",
  	"url_geoserver": "https://public-test.sig.rennesmetropole.fr/geoserver/",
  	"url_api_cadastre_Rennes_Metropole" : "https://api-cadastre.sig.rennesmetropole.fr/v1/"
- }
+}
