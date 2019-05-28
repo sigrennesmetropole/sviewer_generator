@@ -23,6 +23,33 @@ var data_donnees_metiers;
 var url_api_cadastre;
 var url_geoserver;
 
+/**
+ * 
+ * @param linkParams paremetre de l'url envoyé par le sviewer
+ * 
+ */
+function interactWithSviewer(linkParams) {
+	if (typeof linkParams.y !== 'undefined') {
+		map_centre_lat = linkParams.y;
+	}
+	if (typeof linkParams.x !== 'undefined') {
+		map_centre_lng = linkParams.x;
+	}
+	if (typeof linkParams.z !== 'undefined') {
+		map_zoom = linkParams.z;
+	}
+	if (typeof linkParams.title !== 'undefined') {
+		titre_carte = linkParams.title;
+	}
+	if (typeof linkParams.lb !== 'undefined') {
+		fond_plan_defaut_selectionne = linkParams.lb;
+	}
+	
+	var url_sviewer = generer_url_sviewer();
+	afficher_url_sviewer(url_sviewer);
+    afficher_code_iframe(url_sviewer);
+}
+
 if ($('input[name=taille_iframe]:checked').val() == 'pixels') {
 	largeur_iframe = $('#largeur_iframe_pixel').val();
 	hauteur_iframe = $('#hauteur_iframe_pixel').val();
@@ -278,32 +305,7 @@ var languageFr = {
     }
 };
 
-/**
- * 
- * @param linkParams paremetre de l'url envoyé par le sviewer
- * 
- */
-function interactWithSviewer(linkParams) {
-	if (typeof linkParams.y !== 'undefined') {
-		map_centre_lat = linkParams.y;
-	}
-	if (typeof linkParams.x !== 'undefined') {
-		map_centre_lng = linkParams.x;
-	}
-	if (typeof linkParams.z !== 'undefined') {
-		map_zoom = linkParams.z;
-	}
-	if (typeof linkParams.title !== 'undefined') {
-		titre_carte = linkParams.title;
-	}
-	if (typeof linkParams.lb !== 'undefined') {
-		fond_plan_defaut_selectionne = linkParams.lb;
-	}
-	
-	var url_sviewer = generer_url_sviewer();
-	afficher_url_sviewer(url_sviewer);
-    afficher_code_iframe(url_sviewer);
-}
+
 
 // récuperation de la commune choisi lors de la selection dans la liste déroulante 
 // puis modification de l'url du sviewer, du code html de l'iframe et de l'affichage du résultat
