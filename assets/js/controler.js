@@ -1,24 +1,5 @@
-// definition du fond de plan pour la carte servant à determiner l'emprise
-var layer_pvci = L.tileLayer('https://public.sig.rennesmetropole.fr/geowebcache/service/tms/1.0.0/ref_fonds%3Apvci@EPSG%3A3857@png/{z}/{x}/{y}.png', {
-    attribution: 'Plan de ville communal et intercommunal, Référentiel voies et adresses : Rennes Métropole',
-    id: 1,
-    center: [48.1, -1.67],
-    minZoom: 0,
-    maxZoom: 20,
-    tms: true,
-});
-
 var url_sviewer;
 
-
-//initialisation de la carte servant à determiner l'emprise
-var map = L.map('carte_emprise', {
-    center: [48.1, -1.67],
-    zoom: 12,
-    layers: [layer_pvci]
-});
-
-var geojsonLayerMap;
 
 var fond_plan_defaut_selectionne;
 var nom_commune_selectionne;
@@ -30,9 +11,6 @@ var largeur_iframe;
 var hauteur_iframe;
 var hauteur_iframe_glimpse;
 var largeur_iframe_glimpse; 
-var map_centre_lat = map.getCenter().lat;
-var map_centre_lng = map.getCenter().lng;
-var map_zoom = map.getZoom();
 
 var data_sites_orgs;
 var data_donnees_metiers;
@@ -143,25 +121,6 @@ function generer_url_sviewer() {
 	return url;
 }
 
-/** 
-* Affiche la commune choisi sur la carte de selection de l'emprise
-* @Param coordonnees		coordonnes de la commune
-* @Param couleur			couleur d'affichage de la commune
-*/
-function afficher_coordonnees_carte(coordonnees, couleur) {
-	var mapStyle = {
-				'color': couleur,
-				'weight': 3,
-				'opacity': 1
-			};
-   if(geojsonLayerMap != null) {
-		map.removeLayer(geojsonLayerMap);
-	}
-	if (coordonnees != '') {
-		geojsonLayerMap = L.geoJSON(coordonnees, {'style': mapStyle}).addTo(map);
-		map.fitBounds(geojsonLayerMap.getBounds());
-	}
-}
 
 /**
 * crée un champ select2
@@ -441,26 +400,6 @@ $('input[name=configuration_sviewer]').change(function() {
  });
 
 
-// récupération des coordonnées du centre de la carte et du niveau de zoom à chaque zoom sur la carte d'emprise
-// puis modification de l'url du sviewer, du code html de l'iframe et de l'affichage du résultat
-map.on('zoomend', function() {
-	map_centre_lat = map.getCenter().lat;
-	map_centre_lng = map.getCenter().lng;
-	map_zoom = map.getZoom();
-	var url_sviewer = generer_url_sviewer();
-	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
-});
-
-// récupération des coordonnées du centre de la carte et du niveau de zoom à chaque déplacement sur la carte d'emprise
-// puis modification de l'url du sviewer, du code html de l'iframe et de l'affichage du résultat
-map.on('mouseup', function() {
-	map_centre_lat = map.getCenter().lat;
-	map_centre_lng = map.getCenter().lng;
-	map_zoom = map.getZoom();
-	var url_sviewer = generer_url_sviewer();
-	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
-});
-
 $('#largeur_iframe_pixel').on('input', function() {
 	largeur_iframe = $('#largeur_iframe_pixel').val();
  	var url_sviewer = generer_url_sviewer();
@@ -585,7 +524,7 @@ $.when(get_configuration_data()).done(function(configuration) {
     largeur_iframe_glimpse = configuration.partie_configuration_carte[0].largeur_carte_apercu;
 	hauteur_iframe_glimpse = configuration.partie_configuration_carte[0].hauteur_carte_apercu;
 
-	map.setZoom(configuration.partie_configuration_carte[0].zoom_carte_par_defaut);
+	//map.setZoom(configuration.partie_configuration_carte[0].zoom_carte_par_defaut);
 	$('#titre_sviewer').val(configuration.partie_configuration_carte[0].titre_carte_par_defaut);
 	titre_carte = $('#titre_sviewer').val();
 	
