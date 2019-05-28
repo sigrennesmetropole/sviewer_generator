@@ -12,6 +12,12 @@ var hauteur_iframe;
 var hauteur_iframe_glimpse;
 var largeur_iframe_glimpse; 
 
+var map_centre_lat;
+var map_centre_lng;
+var map_zoom;
+var titre_carte;
+var fond_plan_defaut_selectionne;
+
 var data_sites_orgs;
 var data_donnees_metiers;
 var url_api_cadastre;
