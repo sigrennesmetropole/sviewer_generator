@@ -30,7 +30,7 @@ Configuring
 
 * title : free text
 * extent : choice in geojson file https://github.com/sigrennesmetropole/sviewer_generator/blob/master/assets/json/3857_Coordonnees_centre_bourg.geojson
-* interface : 2 differents configurations files of sviewer
+* interface : 2 differents configuration files of sviewer
 * base layers configured in sviewer listed in https://github.com/sigrennesmetropole/sviewer_generator/blob/master/assets/json/fonds_plans.json
 * point of interest layers listed in https://github.com/sigrennesmetropole/sviewer_generator/blob/master/assets/json/donnees_sites_orgs.json
 * thematic's layers listed in https://github.com/sigrennesmetropole/sviewer_generator/blob/master/assets/json/donnees_metiers.json
