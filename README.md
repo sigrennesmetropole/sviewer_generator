@@ -35,5 +35,5 @@ Configuring
 * point of interest layers listed in https://github.com/sigrennesmetropole/sviewer_generator/blob/master/assets/json/donnees_sites_orgs.json
 * thematic's layers listed in https://github.com/sigrennesmetropole/sviewer_generator/blob/master/assets/json/donnees_metiers.json
 
-* contextual help and sviewer_generator can be modified in https://github.com/sigrennesmetropole/sviewer_generator/blob/master/assets/json/configuration.json
+* contextual help and sviewer_generator parameters (urls) can be modified in https://github.com/sigrennesmetropole/sviewer_generator/blob/master/assets/json/configuration.json
 
