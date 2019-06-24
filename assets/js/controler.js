@@ -401,35 +401,45 @@ $('input[name=configuration_sviewer]').change(function() {
 
 //  récupération du titre du sviewer à chaque modification 
 // puis modification de l'url du sviewer, du code html de l'iframe et de l'affichage du résultat
- $('#titre_sviewer').on('input', function() {
+/* $('#titre_sviewer').on('input', function() {
  	titre_carte = $('#titre_sviewer').val();
  	var url_sviewer = generer_url_sviewer();
-    afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
- });
+	afficher_url_sviewer(url_sviewer);
+    afficher_code_iframe(url_sviewer);
+ });*/
 
+ $('#titre_sviewer').focusout(function() {
+	 	titre_carte = $('#titre_sviewer').val();
+	 	var url_sviewer = generer_url_sviewer();
+		afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
+	 });
 
 $('#largeur_iframe_pixel').on('input', function() {
 	largeur_iframe = $('#largeur_iframe_pixel').val();
  	var url_sviewer = generer_url_sviewer();
-	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
+	afficher_url_sviewer(url_sviewer);
+    afficher_code_iframe(url_sviewer);
  });
 
 $('#hauteur_iframe_pixel').on('input', function() {
 	hauteur_iframe = $('#hauteur_iframe_pixel').val();
  	var url_sviewer = generer_url_sviewer();
-	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
+	afficher_url_sviewer(url_sviewer);
+    afficher_code_iframe(url_sviewer);
  });
 
 $('#largeur_iframe_pourcent').on('input', function() {
 	largeur_iframe = $('#largeur_iframe_pourcent').val() + '%';
  	var url_sviewer = generer_url_sviewer();
-	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
+	afficher_url_sviewer(url_sviewer);
+    afficher_code_iframe(url_sviewer);
  });
 
 $('#hauteur_iframe_pourcent').on('input', function() {
 	hauteur_iframe = $('#hauteur_iframe_pourcent').val() + '%';
  	var url_sviewer = generer_url_sviewer();
-	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
+	afficher_url_sviewer(url_sviewer);
+    afficher_code_iframe(url_sviewer);
  });
 
 $('input[name=taille_iframe]').change(function() {
