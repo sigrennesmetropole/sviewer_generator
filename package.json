@@ -19,6 +19,8 @@
     "jshint": "^2.9.5"
   },
   "dependencies": {
-    "lodash.update": "^4.10.2"
+    "lodash.template": "^4.5.0",
+    "lodash.update": "^4.10.2",
+    "update": "^0.7.4"
   }
 }
