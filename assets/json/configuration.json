@@ -55,7 +55,7 @@
  			"hauteur_iframe_pourcent_defaut": 100
  		}
  	],
- 	"localisation_sviewer" : "https://public-test.sig.rennesmetropole.fr/sviewer/",
- 	"url_geoserver": "https://public-test.sig.rennesmetropole.fr/geoserver/",
+ 	"localisation_sviewer" : "https://public.sig.rennesmetropole.fr/sviewer/",
+ 	"url_geoserver": "https://public.sig.rennesmetropole.fr/geoserver/",
  	"url_api_cadastre_Rennes_Metropole" : "https://api-cadastre.sig.rennesmetropole.fr/v1/"
 }
