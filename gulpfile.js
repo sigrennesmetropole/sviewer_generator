@@ -4,7 +4,7 @@ var plugins = gulpLoadPlugins();
 
 const minify = require('gulp-minify');
 gulp.task('minifier_js', function() {
-  gulp.src([
+  return gulp.src([
 	'assets/js/model.js',
 	'assets/js/controler.js',
 	'assets/js/mentions_legales.js',

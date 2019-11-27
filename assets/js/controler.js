@@ -129,12 +129,18 @@ function generer_url_sviewer() {
 	if (theme_site_orgs_selectionnes_length > 0) {
 		url += '&layers=';
 		url_layers = theme_site_orgs_selectionnes[0];
+		if ( $('#onlyCity_cb').is(':checked') ) {
+			url_layers += '**code_insee=' + nom_commune_selectionne;
+		}
 		for (var i = 1; i < theme_site_orgs_selectionnes_length; i++) {
 			url_layers += ',' + theme_site_orgs_selectionnes[i];
+			if ( $('#onlyCity_cb').is(':checked') ) {
+				url_layers += '**code_insee=' + nom_commune_selectionne;
+			}
 		}
 		if (equipements_techniques_selectionnes_length > 0) {
 			for (var j = 0; j < equipements_techniques_selectionnes_length; j++) {
-				url_layers += ',' + equipements_techniques_selectionnes[j];;
+				url_layers += ',' + equipements_techniques_selectionnes[j];
 			}
 		}
 		url += encodeURIComponent(url_layers);
@@ -314,7 +320,7 @@ $('#liste_communes').on('select2:select', function (e) {
 	map_centre_lng = commune_choisie.x;
 	map_centre_lat = commune_choisie.y;
 	map_zoom = commune_choisie.zoom;
-    nom_commune_selectionne = $('#liste_communes').val();
+	nom_commune_selectionne = $('#liste_communes').val();
     var url_sviewer = generer_url_sviewer();
    	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
 });
@@ -323,7 +329,11 @@ $('#liste_communes').on('select2:select', function (e) {
 $("#liste_site_org_cb").change(function() {
     if(this.checked) {
     	data_sites_orgs.forEach(function(data) {
-    		theme_site_orgs_selectionnes.push(data.id);
+
+			if ( !theme_site_orgs_selectionnes.includes(data.id) ) {
+				theme_site_orgs_selectionnes.push(data.id);
+			}
+
     	});
     	$('#liste_site_org').val(theme_site_orgs_selectionnes).trigger('change');
     	var url_sviewer = generer_url_sviewer();
@@ -335,19 +345,30 @@ $("#liste_site_org_cb").change(function() {
 $("#liste_equipements_techniques_cb").change(function() {
     if(this.checked) {
    		data_donnees_metiers.forEach(function(data) {
-   			equipements_techniques_selectionnes.push(data.id);
-    	});
+
+			if ( !equipements_techniques_selectionnes.includes(data.id) ) {
+				equipements_techniques_selectionnes.push(data.id);
+			}
+
+		});
+		
     }
     $('#liste_equipements_techniques').val(equipements_techniques_selectionnes).trigger('change');
     	var url_sviewer = generer_url_sviewer();
    		afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
 });
 
+$("#onlyCity_cb").change(function() {
+	var url_sviewer = generer_url_sviewer();
+	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
+});
+
 
 // récuperation du fond de plan choisi lors de la selection dans la liste déroulante 
 // puis modification de l'url du sviewer, du code html de l'iframe et de l'affichage du résultat
 $('#liste_fonds_plans').on('select2:select', function (e) {
-    fond_plan_defaut_selectionne = $('#liste_fonds_plans').val();
+	fond_plan_defaut_selectionne = $('#liste_fonds_plans').val();
+	console.log(fond_plan_defaut_selectionne);
     var url_sviewer = generer_url_sviewer();
     afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
    });
