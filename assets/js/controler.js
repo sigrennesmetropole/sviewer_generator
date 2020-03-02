@@ -141,14 +141,23 @@ function generer_url_sviewer() {
 		if (equipements_techniques_selectionnes_length > 0) {
 			for (var j = 0; j < equipements_techniques_selectionnes_length; j++) {
 				url_layers += ',' + equipements_techniques_selectionnes[j];
+				if ( $('#onlyCity_cb').is(':checked') ) {
+					url_layers += '**code_insee=' + nom_commune_selectionne;
+				}
 			}
 		}
 		url += encodeURIComponent(url_layers);
 	} else if (equipements_techniques_selectionnes_length > 0) {
 		url += '&layers=';
 		url_layers = equipements_techniques_selectionnes[0];
+		if ( $('#onlyCity_cb').is(':checked') ) {
+			url_layers += '**code_insee=' + nom_commune_selectionne;
+		}
 		for (var k = 1; k < equipements_techniques_selectionnes_length; k++) {
 			url_layers += ',' + equipements_techniques_selectionnes[k];
+			if ( $('#onlyCity_cb').is(':checked') ) {
+				url_layers += '**code_insee=' + nom_commune_selectionne;
+			}
 		}
 		url += encodeURIComponent(url_layers);
 	}
@@ -321,6 +330,7 @@ $('#liste_communes').on('select2:select', function (e) {
 	map_centre_lat = commune_choisie.y;
 	map_zoom = commune_choisie.zoom;
 	nom_commune_selectionne = $('#liste_communes').val();
+	$('#onlyCity_cb').prop("disabled", false);
     var url_sviewer = generer_url_sviewer();
    	afficher_resultat(url_sviewer, largeur_iframe, hauteur_iframe);
 });
