@@ -14,6 +14,16 @@
 		  "id": 2,
 		  "nom": "Composteur collectif",
 		  "couche": "app:sv_metier_composteur_coll"
-		}
+		},
+		{
+                  "id": 3,
+                  "nom": "Arrêt de bus",
+                  "couche": "app:sv_metier_v_star_arret_physique"
+                },
+                {
+                  "id":4 ,
+                  "nom": "Parc vélos sécurisé",
+                  "couche": "app:sv_metier_parc_velo_securise"
+                }
 	]
 }

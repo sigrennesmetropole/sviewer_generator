@@ -100,6 +100,41 @@ function check_theme_site_orgs_selectionnes() {
 	}
 }
 
+function filter_code_insee(url_layers, code_insee, item_selectionnes) {
+	//url_layers += '**code_insee=' + code_insee;
+	
+	var url_layers_filtered = '';
+
+	switch(item_selectionnes) {
+
+		case 'app:sv_sitorg_administration':
+		case 'app:sv_sitorg_culture':
+		case 'app:sv_sitorg_deplacement':
+		case 'app:sv_sitorg_economie':
+		case 'app:sv_sitorg_education':
+		case 'app:sv_sitorg_environnement':
+		case 'app:sv_sitorg_logement':
+		case 'app:sv_sitorg_sante':
+		case 'app:sv_sitorg_securite':
+		case 'app:sv_sitorg_sport':
+		case 'app:sv_metier_v_decheterie_pf_dv':
+		case 'app:sv_metier_v_gesbac_pav':
+			url_layers_filtered = url_layers + '**code_insee=' + code_insee;
+			break;
+		case 'app:sv_metier_v_star_arret_physique':
+			url_layers_filtered = url_layers + '**ap_insee=' + code_insee;
+			break;
+		case 'app:sv_metier_parc_velo_securise':
+			url_layers_filtered = url_layers + '**c_insee=' + code_insee;
+			break;
+		default:
+			url_layers_filtered = url_layers;
+
+	}
+
+	return url_layers_filtered;
+} 
+
 /**
 * Creer l'url permettant d'afficher le sviewer à partir des variables contenant les informations issues du formulaire
 * @Return url 	url crée
@@ -130,19 +165,19 @@ function generer_url_sviewer() {
 		url += '&layers=';
 		url_layers = theme_site_orgs_selectionnes[0];
 		if ( $('#onlyCity_cb').is(':checked') ) {
-			url_layers += '**code_insee=' + nom_commune_selectionne;
+			url_layers = filter_code_insee(url_layers, nom_commune_selectionne, theme_site_orgs_selectionnes[0]);
 		}
 		for (var i = 1; i < theme_site_orgs_selectionnes_length; i++) {
 			url_layers += ',' + theme_site_orgs_selectionnes[i];
 			if ( $('#onlyCity_cb').is(':checked') ) {
-				url_layers += '**code_insee=' + nom_commune_selectionne;
+				url_layers = filter_code_insee(url_layers, nom_commune_selectionne, theme_site_orgs_selectionnes[i]);
 			}
 		}
 		if (equipements_techniques_selectionnes_length > 0) {
 			for (var j = 0; j < equipements_techniques_selectionnes_length; j++) {
 				url_layers += ',' + equipements_techniques_selectionnes[j];
 				if ( $('#onlyCity_cb').is(':checked') ) {
-					url_layers += '**code_insee=' + nom_commune_selectionne;
+					url_layers = filter_code_insee(url_layers, nom_commune_selectionne, equipements_techniques_selectionnes[j]);
 				}
 			}
 		}
@@ -151,12 +186,12 @@ function generer_url_sviewer() {
 		url += '&layers=';
 		url_layers = equipements_techniques_selectionnes[0];
 		if ( $('#onlyCity_cb').is(':checked') ) {
-			url_layers += '**code_insee=' + nom_commune_selectionne;
+			url_layers = filter_code_insee(url_layers, nom_commune_selectionne, equipements_techniques_selectionnes[0]);
 		}
 		for (var k = 1; k < equipements_techniques_selectionnes_length; k++) {
 			url_layers += ',' + equipements_techniques_selectionnes[k];
 			if ( $('#onlyCity_cb').is(':checked') ) {
-				url_layers += '**code_insee=' + nom_commune_selectionne;
+				url_layers = filter_code_insee(url_layers, nom_commune_selectionne, equipements_techniques_selectionnes[k]);
 			}
 		}
 		url += encodeURIComponent(url_layers);
