@@ -23,7 +23,7 @@
     "defaults-deep": "^0.2.4",
     "lodash.template": "^4.5.0",
     "lodash.update": "^4.10.2",
-    "set-value": "^4.1.0",
+    "set-value": "^4.0.1",
     "update": "^0.7.4"
   }
 }
